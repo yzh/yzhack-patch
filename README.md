@@ -3,7 +3,7 @@ some patches for JNetHack
 
 all these patches are under the NetHack General Public License. see [LICENSE]
 
-## miko
+## miko -- JNetHackで巫女さん。
 新しい職業「巫女 Medium」を追加します。 [変愚蛮怒の巫女パッチ](http://menyou.s3.x-beat.com/)がベースになっています。一言でいえば「弓が得意なPriestっぽいの」です。
 
 ### 特徴
@@ -35,7 +35,7 @@ all these patches are under the NetHack General Public License. see [LICENSE]
 * みそぎのペナルティ。
 
 
-## Halfelf
+## Halfelf -- JNetHackでハーフエルフ。
 新しい種族「ハーフエルフ Half-elf」を追加します。 人間とエルフのハーフで、特徴は「人間より頭がよく、エルフより強靭」です。「人間より貧弱で、エルフより頭悪い」とも言います。
 
 ### 特徴
@@ -52,7 +52,7 @@ all these patches are under the NetHack General Public License. see [LICENSE]
 * 職業を制限する？
 
 
-## Fencer
+## Fencer -- JNetHackで剣士。
 新しい職業「戦士 Fighter」を追加します。昔のJNetHackにあったFighterがベースになっています。 刀剣類のエキスパートで、二刀流で命中率ボーナスを得られます。
 
 ### 特徴
@@ -72,7 +72,7 @@ all these patches are under the NetHack General Public License. see [LICENSE]
 * クエストが適当すぎる。マップと敵がひどい。
 
 
-## Felpurr
+## Felpurr -- JNetHackでフェルプール。
 新しい種族「フェルプール Felpurr」を追加します。 猫から進化した独自の種族らしいです。 猫なので素早いです。猫なのでよく寝ます。
 
 ### 特徴
