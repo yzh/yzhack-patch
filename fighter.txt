@@ -1,0 +1,1014 @@
+diff -aurbN nethack-3.4.3/dat/Fighter.des nethack-3.4.3-fighter/dat/Fighter.des
+--- nethack-3.4.3/dat/Fighter.des	1970-01-01 09:00:00.000000000 +0900
++++ nethack-3.4.3-fighter/dat/Fighter.des	2009-01-29 22:51:36.000000000 +0900
+@@ -0,0 +1,308 @@
++#	SCCS Id: @(#)Arch.des	3.2	91/12/13
++#	Copyright (c) 1989 by Jean-Christophe Collet
++#	Copyright (c) 1991 by M. Stephenson
++# NetHack may be freely redistributed.  See license for details.
++#
++#	The "start" level for the quest.
++#
++MAZE: "Fig-strt",' '
++FLAGS: noteleport,hardfloor
++GEOMETRY:center,center
++#         1    1    2    2    3    3    4    4    5    5    6    6    7    7
++#1   5    0    5    0    5    0    5    0    5    0    5    0    5    0    5
++MAP
++............................................................................
++...--------------------------------------------....................CC...CCCC
++...|....................|...|.....|.......|...|...................CCCCCCCCCC
++...|.........\..........+...|.....+.......|...------............CCCCCCCCCCCC
++...|....................|...|.....|....-+--....+...|...........CCCCCCCCCCCC.
++...|....................|...+....--....|......------......CCCCCCCCCCCCCCC...
++...|--+------------+----|...|....|.....|------|........CCCCCCCCCCCCC........
++...|....................|...|....|.....+......|......CCCCCCCCCCCCC..........
++...|....................|...|------------------.......CCCCCCCC..............
++...|....................+...|......................C.CCCCCCC................
++...---+----------------------........................CCCCC..................
++........................C.........................CCCCCCC.......----------..
++...---+---...........CC..CC....................CCCCCCCC.........|........|..
++..C|.....----------CCCCCCC-------------......CCCCCCC-----.......+........|..
++.CCC..........CCCCCCCCC.....|.....+...|....CCCCCCCC.....|.......|.......--..
++..CCCC.........CCCC.........|.....|----...CCCCCCCC......+.......|.......|...
++...CCCCCC.........CC........+.....|.....CCCCCCCCCCCC....|.......---------CCC
++...|CCCCCC..........C.CCC...|.....|...CCCCCCCCCCCC-------...............CCCC
++...---C-CCC----------CCCCCC-----C-CCCCCCCCC.CCCC......................CCCCCC
++.......CCCCCC...........C..C...CCCCCCCCC.....C.....................CCCCCCC..
++..........C.C.......................................................C.......
++ENDMAP
++# Dungeon Description
++REGION:(00,00,75,19),lit,"ordinary"
++# Stairs
++STAIR:(49,04),down
++# Portal arrival point
++BRANCH:(65,12,71,15),(0,0,0,0)
++# Doors
++DOOR: closed,(24,03)
++DOOR: closed,(34,03)
++DOOR: closed,(40,04)
++DOOR: closed,(47,04)
++DOOR: closed,(28,05)
++DOOR: closed,(06,06)
++DOOR: closed,(19,06)
++DOOR: closed,(39,07)
++DOOR: closed,(24,09)
++DOOR: closed,(06,10)
++DOOR: closed,(06,12)
++DOOR: closed,(64,13)
++DOOR: closed,(34,14)
++DOOR: broken,(56,15)
++DOOR: closed,(28,16)
++# Leader
++MONSTER:'@',"Rigil",(13,3)
++# Chest
++OBJECT:'(',"chest",(14,3)
++# guard
++MONSTER: '@',"swordsman",(06,03),peaceful
++MONSTER: '@',"swordsman",(20,03),peaceful
++MONSTER: '@',"swordsman",(31,03),peaceful
++MONSTER: '@',"swordsman",(08,04),peaceful
++MONSTER: '@',"swordsman",(11,04),peaceful
++MONSTER: '@',"swordsman",(15,04),peaceful
++MONSTER: '@',"swordsman",(19,04),peaceful
++MONSTER: '@',"swordsman",(37,05),peaceful
++MONSTER: '@',"swordsman",(09,08),peaceful
++MONSTER: '@',"swordsman",(13,08),peaceful
++MONSTER: '@',"swordsman",(17,08),peaceful
++MONSTER: '@',"swordsman",(43,10),peaceful
++MONSTER: '@',"swordsman",(33,11),peaceful
++#
++# Non diggable walls
++NON_DIGGABLE:(01,01,75,19)
++# Random traps
++TRAP:"pit",random
++TRAP:"pit",random
++TRAP:"pit",random
++TRAP:"pit",random
++TRAP:"pit",random
++# Monsters on siege duty.
++MONSTER: 'Z',random,random
++MONSTER: 'Z',random,random
++MONSTER: 'Z',random,random
++MONSTER: 'Z',random,random
++MONSTER: 'Z',random,random
++MONSTER: 'Z',random,random
++MONSTER: 'S',random,random
++MONSTER: 'S',random,random
++MONSTER: 'S',random,random
++MONSTER: 'S',random,random
++MONSTER: 'S',random,random
++MONSTER: 'S',random,random
++
++#
++#	The "locate" level for the quest.
++#
++
++MAZE: "Fig-loca",' '
++FLAGS: hardfloor,noteleport
++GEOMETRY:left,top
++#         1    1    2    2    3    3    4    4    5    5    6    6    7    7
++#1   5    0    5    0    5    0    5    0    5    0    5    0    5    0    5
++MAP
++.........................................................................}}}
++.......................................................PPP...............}}}
++..-------------------...........................P....PPP................}}}}
++..|....|............|..........................PP..PPP.................}}}}}
++..|....|.......C....+..........................P.PPP...................}}}}}
++..|....|......C.....|..........................PPP....................}}}}}}
++..|....|.....C..C..C|................PP......PPP.....................}}}}}}}
++..|....+.....CC..CCCC.CC...........PPP.....PPP......................}}}}}}}}
++..|....|....CCCC.C.CCCC............P.......PP......................}}}}}}}}}
++..---------CC--CC--CC..C..........PP......PP......................}}}}.}}}}}
++..........CCCC..CC.CCC...........PP.....PPP......................}}}}}}}}}}}
++.........CC.C..CC..CC............P.....PP.......................}}}}}}}}}}}}
++............................P...P......P......................}}}}}}}}}}}}}}
++......................P.PPPP...PP............................P}}}}}}}}}}}}}}
++....................PP.P.....PPP...........................}}}P}}}}}}}}}}}}}
++...................PP......PPP..........................}}}}}}}..PPP}}}}}}}}
++.................PPP....PPPP..........................}}}}}}}}}}}}}.}}}}}}}}
++.............PPPPPP.................................}}}}}}}}}}}}}}}PP}}.}}}}
++...........PPPPP..................................}}}}}}}}}}}}}}}}}}}..}.}}}
++.......PPPPP....................................}}}}}}}}}}}}}}}}}}}}}}}}}}}}
++.............................................}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
++ENDMAP
++# Dungeon Description
++REGION:(03,03,19,08),lit,"ordinary"
++# REGION:(01,11,71,17),unlit,"ordinary"
++# REGION:(01,01,22,08),unlit,"temple"
++# Doors
++DOOR: closed,(20,04)
++# Stairs
++STAIR:(72,18),down
++STAIR:(05,04),up
++# Non diggable walls
++# NON_DIGGABLE:(01,01,75,19)
++# Objects
++OBJECT:random,random,random
++OBJECT:random,random,random
++OBJECT:random,random,random
++OBJECT:random,random,random
++# Random traps
++TRAP:random,random
++TRAP:random,random
++TRAP:random,random
++TRAP:random,random
++TRAP:random,random
++TRAP:random,random
++TRAP:random,random
++TRAP:random,random
++# Random monsters.
++MONSTER:'S',random,random
++MONSTER:'S',random,random
++MONSTER:'S',random,random
++MONSTER:'S',random,random
++MONSTER:'S',random,random
++MONSTER:'S',random,random
++MONSTER:'S',random,random
++MONSTER:'S',random,random
++MONSTER:'Z',random,random
++MONSTER:'Z',random,random
++MONSTER:'Z',random,random
++MONSTER:'Z',random,random
++MONSTER:'Z',random,random
++MONSTER:'Z',random,random
++MONSTER:'Z',random,random
++MONSTER:'Z',random,random
++#
++#
++#	The "goal" level for the quest.
++#
++
++MAZE: "Fig-goal", ' '
++FLAGS: hardfloor,noteleport
++GEOMETRY:center,center
++#         1    1    2    2    3    3    4    4    5    5    6    6    7    7
++#1   5    0    5    0    5    0    5    0    5    0    5    0    5    0    5
++MAP
++}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
++}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
++}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
++}}}}}}}}}}}}}}}}................................}}}}}}}}}}}}}}}}}}}}}}}}}}}}
++}}}}}}}}}}}}}......................................}}}}}}}}}}}}}}}}}}}}}}}}}
++}}}}}}}}}}}.................------------------.......}}}}}}}}}}}}}}}}}}}}}}}
++}}}}}}}}}}.......------------......|..|......-----....}}}}}}}}}}}}}}}}}}}}}}
++}}}}}}}}}.....----........|........|..|..........|.....}}}}}}}}}}}}}}}}}}}}}
++}}}}}}}}......|...........|........|..+..........|......}}}}}}}}}}}}}}}}}}}}
++}}}}}}}.......|...........|........|..|----+-----|.......}}}}}}}}}}}}}}}}}}}
++}}}}}}}.......|...........|........|..|..........|.......}}}}}}}}}}}}}}}}}}}
++}}}}}}}}......|...........|........+..-----+------......}}}}}}}}}}}}}}}}}}}}
++}}}}}}}}}.....-----.......|--------|....--.............}}}}}}}}}}}}}}}}}}}}}
++}}}}}}}}}}........---.....+........+...--.............}}}}}.}}}}}}}}}}..}}}}
++}}}}}}}}}}}.........--------------------.............}}..}.}..}}}}}}}...}}}}
++}}}}}}}}}}}}}.....................................}}}}}}}}}}}}}}}}}.....}}}}
++}}}}}}}}}}}}}}}}................................}}}}}}}}}}}}}}.}}.......}}}}
++}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}........}}}}
++}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
++}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
++ENDMAP
++# Dungeon Description
++REGION:(00,00,75,19),lit,"ordinary"
++# Stairs
++STAIR:(69,16),up
++# Non diggable walls
++# NON_DIGGABLE:(00,00,30,15)
++# Objects
++OBJECT:')',"short sword",(18,9),blessed,0,"The Fortune Sword"
++OBJECT:random,random,random
++OBJECT:random,random,random
++OBJECT:random,random,random
++OBJECT:random,random,random
++OBJECT:random,random,random
++OBJECT:random,random,random
++OBJECT:random,random,random
++OBJECT:random,random,random
++OBJECT:random,random,random
++OBJECT:random,random,random
++OBJECT:random,random,random
++OBJECT:random,random,random
++OBJECT:random,random,random
++OBJECT:random,random,random
++# Random traps
++TRAP:random,random
++TRAP:random,random
++TRAP:random,random
++TRAP:random,random
++TRAP:random,random
++TRAP:random,random
++# Random monsters.
++MONSTER:'@',"Toliman",(18,9)
++MONSTER:'S',random,random
++MONSTER:'S',random,random
++MONSTER:'S',random,random
++MONSTER:'S',random,random
++MONSTER:'S',random,random
++MONSTER:'S',random,random
++MONSTER:'S',random,random
++MONSTER:'S',random,random
++MONSTER:'S',random,random
++MONSTER:'Z',random,random
++MONSTER:'Z',random,random
++MONSTER:'Z',random,random
++MONSTER:'Z',random,random
++MONSTER:'Z',random,random
++MONSTER:'Z',random,random
++MONSTER:'Z',random,random
++MONSTER:'Z',random,random
++MONSTER:'Z',random,random
++
++#
++#	The "fill" levels for the quest.
++#
++
++MAZE: "Fig-fila" , ' '
++INIT_MAP: '.' , 'P' , true , true , unlit, false
++NOMAP
++STAIR:random, up
++STAIR:random, down
++#
++MONSTER: 'Z', random, random
++MONSTER: 'Z', random, random
++MONSTER: 'Z', random, random
++MONSTER: 'Z', random, random
++MONSTER: 'Z', random, random
++MONSTER: 'Z', random, random
++MONSTER: 'Z', random, random
++MONSTER: 'S', random, random
++MONSTER: 'S', random, random
++MONSTER: 'S', random, random
++
++TRAP: random, random
++TRAP: random, random
++TRAP: random, random
++TRAP: random, random
++TRAP: random, random
++TRAP: random, random
++TRAP: random, random
++
++MAZE: "Fig-filb" , ' '
++INIT_MAP: '.' , '}' , true , true , unlit, false
++NOMAP
++STAIR:random, up
++STAIR:random, down
++#
++MONSTER: 'Z', random, random
++MONSTER: 'Z', random, random
++MONSTER: 'Z', random, random
++MONSTER: 'S', random, random
++MONSTER: 'S', random, random
++MONSTER: 'S', random, random
++MONSTER: 'S', random, random
++MONSTER: 'S', random, random
++MONSTER: 'S', random, random
++MONSTER: 'S', random, random
++MONSTER: 'S', random, random
++
++TRAP: random, random
++TRAP: random, random
++TRAP: random, random
++TRAP: random, random
++TRAP: random, random
++TRAP: random, random
++TRAP: random, random
+diff -aurbN nethack-3.4.3/dat/jquest.txt nethack-3.4.3-fighter/dat/jquest.txt
+--- nethack-3.4.3/dat/jquest.txt	2008-12-21 17:00:26.000000000 +0900
++++ nethack-3.4.3-fighter/dat/jquest.txt	2009-01-29 22:46:24.000000000 +0900
+@@ -1260,6 +1260,253 @@
+ 「魔除けを献上せよ．%dが迎えてくれるだろう！」
+ %E
+ #
++#	Fighter
++#
++%Cc Fig 00001
++あなたは気がつくと見覚えのある場所に立っていた．
++間違いない，ここは懐しい%Hだ．しかしこれはいったいどういうことか？
++激しい戦闘があったかのように荒廃している．
++これではまるで廃虚だ．
++
++あなたは身震いした．%lの元へ急がねばならない．
++%E
++%Cp Fig 00002
++もう一度，あなたは%Hに戻ってきた．
++%E
++%Cp Fig 00003
++あなたは%Hに戻ってきた．
++これが最後のチャンスかもしれないという焦りとともに…
++%E
++%Cp Fig 00005
++「%nは世界を自分の思うがままにするつもりだ．なんて怖ろしい…」
++%E
++%Cp Fig 00006
++「%oを盗むなんて…%nはいったい何を考えているんだ？」
++%E
++%Cp Fig 00007
++「%Hは私たちが守るから，あなたは%nを追いなさい！」
++%E
++%Cp Fig 00008
++「自分の姉に反抗するだなんて，%nも馬鹿な奴だ」
++%E
++%Cp Fig 00009
++「%oなどなくても%lは負けはしない！…といいんだが」
++%E
++%Cp Fig 00010
++「最近，%lが妙に寂しそうなんだ．原因を知らないか？」
++%E
++%Cp Fig 00011
++「星々の動きには常に注意することだ」
++%E
++%Cp Fig 00012
++「ここだけの話だが，%lはもう引退したいと思っているらしい」
++%E
++%Cp Fig 00013
++「なんだか視力が落ちてきたようだ」
++%E
++%Cp Fig 00014
++「それにしてもなぜあんなことが起きたんだろう」
++%E
++%Cc Fig 00015
++「よく戻ってきてくれました，%p．あなたは希望の星です．
++  私たちすべての運命があなたの手の中にあるのですよ！
++
++「今や世界は滅亡の危機にさらされているのです…
++  あなたの覚悟を聞かせてください」
++%E
++%Cp Fig 00016
++「よくぞ戻ってきました，%p．覚悟はできましたか？」
++%E
++%Cp Fig 00017
++「もう時間がありません，%p．手遅れになる前に…」
++%E
++%Cc Fig 00018
++「…もうおしまいですね，%p．何もかも遅すぎました．
++  こうなったのもすべて私のせいです．
++  %nやあなたを正しく導くことのできなかった私のミスです．
++
++  もはや%nを止めることは誰にもできません．
++  星々もいずれは光を失なうもの…
++  その時が来たようです…」
++%E
++%Cc Fig 00019
++「厳しいことは言いたくないのですが，%p，あなたはまだ未熟です．
++  私はあなたにこれまでになく厳しい試練を課すつもりです．
++  あなたが%Rになるまで，私たちがなんとか時間をかせぎます．
++  もっと鍛錬を積んでいらっしゃい！」
++%E
++%Cc Fig 00020
++「%p…何を迷っているのです．
++  あなたは%aの星の下に生まれたのですよ．
++  星々の導きに背いてはいけません．
++
++「賢しらな言葉に惑わされてはいけません．
++  星々の導きこそが私たちの運命であり，生命そのものです．
++  身を清め，あなたの星に従うのです！」
++%E
++%Cc Fig 00021
++「よく聞いてください，%p．
++  あなたがここを旅立ってすぐ，私の妹%nが反乱を起こしたのです．
++  私は%nにだまされて，%oを盗まれてしまいました．
++
++「%nの本当の狙いが何だったのか，私にはわかりません．
++  確かなことは，%nが邪悪な心で%oの力を使おうと
++  しているということだけです．%nは%oに魅了され，
++  己の力を試すためだけに世界を滅ぼそうとしているのです．
++
++「お願いです，%p．
++  ただちに%iへ行って，%nから%oを取り返してください．
++  おそらく激しい戦いになるでしょう．
++  たとえ何があろうとも，世界の滅亡だけは防がねばなりません！
++  さあ%p，%iへ行くのです．星々の導きを信じなさい！」
++%E
++%Cp Fig 00025
++「%nの力は日に日に強くなっていきます．気をつけなさい」
++%E
++%Cp Fig 00026
++「%iに行く道中も油断してはなりません」
++%E
++%Cp Fig 00027
++「あなたが最後の希望です，%p」
++%E
++%Cp Fig 00028
++「%dと星々の導きを信じるのです」
++%E
++%Cp Fig 00029
++「%n…いったいどうしてなの…」
++%E
++%Cp Fig 00030
++「%oを取り戻すのが最優先です」
++%E
++%Cp Fig 00031
++「%Hもいつまで耐えられるかしら…」
++%E
++%Cp Fig 00032
++「愚かな%nに情けは無用です！」
++%E
++%Cp Fig 00033
++「%nに会ったら…いえ，なんでもありません」
++%E
++%Cp Fig 00034
++「弱気になってはいけません．諦めたら終わりです」
++%E
++%Cp Fig 00035
++あなたは%iに到着した．
++%E
++%Cp Fig 00036
++もう一度，あなたは%iまでやってきた．
++%E
++%Cp Fig 00040
++あなたは%oの存在を感じた．
++%E
++%Cp Fig 00041
++%oの存在が空気を通してつたわってきた．
++%E
++%Cc Fig 00050
++「久しぶりね，%p．%lのお使いできたのかしら．
++  それなら残念だったわね，%oはあたしのものよ．
++
++  あなたも%lも，お星様の言いなりになって楽しいのかしら？
++  けど，あたしはあたしの好きに生きていたいの．
++  そのためには%oの力が必要なのよ！
++
++  %oの力を使いこなせるのはあたしだけよ．
++  それを証明してあげるわ！」
++%E
++%Cc Fig 00051
++「%cがあたしの仲間になるために戻ってきたのかしら？
++
++「違うのなら，今のうちに逃げたほうが身のためよ．
++
++「%oはあたしのものよ．言ってもわからないようだけど！」
++%E
++%Cp Fig 00052
++「がんばるじゃないの，偉大なる%rさん！」
++%E
++%Cp Fig 00053
++「しまった，%oが！そ，それはあたしのものよ！」
++%E
++%Cp Fig 00060
++「さあ%c，決着をつけましょう！」
++%E
++%Cp Fig 00061
++「ごらん，これが%oの力よ！」
++%E
++%Cp Fig 00062
++「意外といい腕ね．あたしの仲間になって%lと戦わない？」
++%E
++%Cp Fig 00063
++「無駄よ，無駄！」
++%E
++%Cp Fig 00064
++「いったい誰があなたに剣技を教えたと思っているの？」
++%E
++%Cp Fig 00065
++「%lもあなたも，どうしてあたしの考えをわかってくれないの！？」
++%E
++%Cp Fig 00066
++「あたしの思い通りにならない世界なんて壊れちゃえ！」
++%E
++%Cp Fig 00067
++「帰って%lに言ってよ，あたしの勝ちだって」
++%E
++%Cp Fig 00068
++「その程度で%rだなんて，笑わせないで！」
++%E
++%Cp Fig 00069
++「どうしてあたしの邪魔をするの！」
++%E
++%Cc Fig 00070
++あなたは%oの力を全身に感じた！なんという素晴しい力だ！
++あなたは，この力を欲望のままに解放したいという激しい誘惑にかられた．
++しかし，かろうじて理性をとりもどした．
++%lの元へ急いで戻らねばならない．
++%E
++%Cc Fig 00080
++%nは苦痛に顔を歪め，両腕を天へと差し延べた．
++
++     「姉様！！」
++
++悲痛な叫びを残し，%nの身体は崩れ落ちた．
++%E
++%Cc Fig 00081
++%lは%oをそっと手にとった．
++その瞬間，かつての持ち主に何が起きたかを悟ったようだった．
++%lは顔をあげ，微笑みをうかべた．
++
++「よくやりました，%p．
++  道を誤った%nは，正当な報いを受けたのです．
++
++「この%oをここに置いておくのは危険です．
++  あなたが持っていくのがいいでしょう．
++  この力を誰よりうまく役立てられるのも，誰より必要としているのも，
++  %p，きっとあなたでしょうから．
++  さあ，旅を続けるのです，%p．星々の導くままに！」
++
++あなたは背を向け，立ち去ろうとした．
++背後から，すすり泣き混じりの声がかすかにつぶやくのを確かに聞いた…
++
++「%n…馬鹿な子…」
++%E
++%Cc Fig 00082
++%lは%oを寂しげに見つめ，あなたに返した．
++
++「%oはあなたのものです．
++  この力を使いこなせるのはあなただけでしょう，%p」
++%E
++%Cp Fig 00090
++「元気そうですね，%p．こちらはどうにか落ちついてきました」
++%E
++%Cc Fig 00091
++「%p，とうとう魔除けを手に入れたのですね．見事です．
++
++「魔除けを持って精霊界へ行きなさい．
++  そして%dの祭壇に捧げるのです．
++  そうすれば%dの輝きはいや増すことでしょう．
++  %p，星々の導きを信じなさい．
++  私たちはここであなたの幸運を祈っていますよ」
++%E
++#
+ #	Healer
+ #
+ %Cc Hea 00001
+diff -aurbN nethack-3.4.3/dat/jtrnsmon.dat nethack-3.4.3-fighter/dat/jtrnsmon.dat
+--- nethack-3.4.3/dat/jtrnsmon.dat	2008-12-21 17:00:26.000000000 +0900
++++ nethack-3.4.3-fighter/dat/jtrnsmon.dat	2009-01-29 22:46:24.000000000 +0900
+@@ -523,6 +523,7 @@
+ Barbarian:		野蛮人:
+ Caveman:		洞窟人:
+ Cavewoman:		洞窟人:
++Fighter:		戦士:
+ Healer:			薬師:
+ Knight:			騎士:
+ Monk:			武闘家:
+@@ -539,6 +540,7 @@
+ caveman:		洞窟人:
+ cavewoman:		洞窟人:
+ elf:			エルフ:
++fighter:		戦士:
+ healer:			薬師:
+ knight:			騎士:
+ monk:			武闘家:
+@@ -556,6 +558,7 @@
+ Lord Carnarvon:		カーナボン卿:
+ Pelias:			ペリアス:
+ Shaman Karnov:		呪術師カルノフ:
++Rigil:			リギル:
+ Hippocrates:		ヒポクラテス:
+ King Arthur:		アーサー王:
+ Grand Master:		総師範:
+@@ -572,6 +575,7 @@
+ Minion of Huhetotl:	フヘトトルの使い:
+ Thoth Amon:		トート・アモン:
+ Chromatic Dragon:	クロマティック・ドラゴン:
++Toliman:		トリマン:
+ Cyclops:		サイクロプス:
+ Ixoth:			イクソス:
+ Master Kaen:		カエン:
+@@ -588,6 +592,7 @@
+ student:		学生:
+ chieftain:		首領:
+ neanderthal:		ネアンデルタール人:
++swordsman:		剣士:
+ attendant:		随行員:
+ page:			小姓:
+ abbot:			師範:
+@@ -613,6 +618,9 @@
+ Anu:			アヌ:
+ Ishtar:			イシュタル:
+ Anshar:			アンシャル:
++Sol:			ソル:
++Terra:			テラ:
++Luna:			ルナ:
+ Athena:			アテナ:
+ Hermes:			ヘルメス:
+ Poseidon:		ポセイドン:
+diff -aurbN nethack-3.4.3/dat/jtrnsobj.dat nethack-3.4.3-fighter/dat/jtrnsobj.dat
+--- nethack-3.4.3/dat/jtrnsobj.dat	2008-12-21 17:00:26.000000000 +0900
++++ nethack-3.4.3-fighter/dat/jtrnsobj.dat	2009-01-29 22:46:24.000000000 +0900
+@@ -835,6 +835,8 @@
+ AThe Heart of Ahriman:		アーリマンの心臓:
+ # C
+ AThe Sceptre of Might:		権力の笏:
++# F
++AThe Fortune Sword:		フォーチュンソード:
+ # H
+ AThe Staff of Aesculapius:	アスクレピオスの杖:
+ # K
+diff -aurbN nethack-3.4.3/include/artilist.h nethack-3.4.3-fighter/include/artilist.h
+--- nethack-3.4.3/include/artilist.h	2003-12-08 08:39:13.000000000 +0900
++++ nethack-3.4.3-fighter/include/artilist.h	2009-01-29 22:46:24.000000000 +0900
+@@ -131,7 +131,11 @@
+  */
+ A("Vorpal Blade",		LONG_SWORD,
+ 	(SPFX_RESTR|SPFX_BEHEAD), 0, 0,
++#ifdef FIGHTER
++	PHYS(5,1),	NO_DFNS,	NO_CARY,	0, A_NEUTRAL, PM_FIGHTER, NON_PM, 4000L ),
++#else
+ 	PHYS(5,1),	NO_DFNS,	NO_CARY,	0, A_NEUTRAL, NON_PM, NON_PM, 4000L ),
++#endif
+ /*
+  *	Ah, never shall I forget the cry,
+  *		or the shriek that shrieked he,
+@@ -168,6 +172,14 @@
+ 	PHYS(5,0),	NO_DFNS,	CARY(AD_MAGM),
+ 	CONFLICT,	A_LAWFUL, PM_CAVEMAN, NON_PM, 2500L ),
+ 
++#ifdef FIGHTER 
++A("The Fortune Sword",			SHORT_SWORD,
++	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL|SPFX_LUCK),
++		(SPFX_ESP|SPFX_DBONUS), 0,
++	PHYS(3,4),	NO_DFNS,	CARY(AD_MAGM),
++	0,	A_NEUTRAL,	PM_FIGHTER, NON_PM, 10000L ),
++#endif
++
+ #if 0	/* OBSOLETE */
+ A("The Palantir of Westernesse",	CRYSTAL_BALL,
+ 	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL),
+diff -aurbN nethack-3.4.3/include/config.h nethack-3.4.3-fighter/include/config.h
+--- nethack-3.4.3/include/config.h	2008-12-21 17:00:26.000000000 +0900
++++ nethack-3.4.3-fighter/include/config.h	2009-01-29 22:46:24.000000000 +0900
+@@ -359,6 +359,8 @@
+ /*# define USE_MAKESINGULAR */	/* Enable singularize */
+ #endif
+ 
++#define FIGHTER		/* add new role Fighter */
++
+ /*
+  * Section 5:  EXPERIMENTAL STUFF
+  *
+diff -aurbN nethack-3.4.3/src/attrib.c nethack-3.4.3-fighter/src/attrib.c
+--- nethack-3.4.3/src/attrib.c	2008-12-21 17:00:26.000000000 +0900
++++ nethack-3.4.3-fighter/src/attrib.c	2009-01-29 22:46:24.000000000 +0900
+@@ -68,6 +68,11 @@
+ 		     {	15, &(HWarning), "敏感になった", "鈍感になった" },
+ 		     {	 0, 0, 0, 0 } },
+ 
++#ifdef FIGHTER 
++	fig_abil[] = { {	7, &(HFast),  "素早さを得た", "遅くなった" },
++		     {	 0, 0, 0, 0 } },
++#endif
++
+ 	hea_abil[] = { {	 1, &(HPoison_resistance), "", "" },
+ /*JP
+ 		     {	15, &(HWarning), "sensitive", "" },
+@@ -671,6 +676,9 @@
+ 	case PM_ARCHEOLOGIST:   abil = arc_abil;	break;
+ 	case PM_BARBARIAN:      abil = bar_abil;	break;
+ 	case PM_CAVEMAN:        abil = cav_abil;	break;
++#ifdef FIGHTER
++	case PM_FIGHTER:	abil = fig_abil;	break;
++#endif
+ 	case PM_HEALER:         abil = hea_abil;	break;
+ 	case PM_KNIGHT:         abil = kni_abil;	break;
+ 	case PM_MONK:           abil = mon_abil;	break;
+diff -aurbN nethack-3.4.3/src/monst.c nethack-3.4.3-fighter/src/monst.c
+--- nethack-3.4.3/src/monst.c	2003-12-08 08:39:13.000000000 +0900
++++ nethack-3.4.3-fighter/src/monst.c	2009-01-29 22:46:24.000000000 +0900
+@@ -2951,6 +2951,15 @@
+ 	M1_HUMANOID|M1_OMNIVORE,
+ 	M2_NOPOLY|M2_HUMAN|M2_STRONG|M2_FEMALE|M2_COLLECT, M3_INFRAVISIBLE,
+ 	HI_DOMESTIC),
++#ifdef FIGHTER
++    MON("fighter", S_HUMAN,
++	LVL(10, 12, 10, 2, 3), G_NOGEN,
++	A(ATTK(AT_WEAP, AD_PHYS, 1, 6), ATTK(AT_WEAP, AD_PHYS, 1, 6),
++	  NO_ATTK, NO_ATTK, NO_ATTK, NO_ATTK),
++	SIZ(WT_ELF, 350, 0, MS_HUMANOID, MZ_HUMAN), 0, 0,
++	M1_HUMANOID|M1_OMNIVORE,
++	M2_NOPOLY|M2_HUMAN|M2_STRONG|M2_COLLECT, 0, HI_DOMESTIC),
++#endif
+     MON("healer", S_HUMAN,
+ 	LVL(10, 12, 10, 1, 0), G_NOGEN,
+ 	A(ATTK(AT_WEAP, AD_PHYS, 1, 6),
+@@ -3089,6 +3098,17 @@
+ 	  M2_FEMALE|M2_COLLECT|M2_MAGIC,
+ 	M3_CLOSE|M3_INFRAVISION|M3_INFRAVISIBLE, HI_LORD),
+ #endif
++#ifdef FIGHTER
++    MON("Rigil", S_HUMAN,
++	LVL(20, 15, 0, 80, 20), (G_NOGEN|G_UNIQ),
++	A(ATTK(AT_WEAP, AD_PHYS, 1, 8),
++	  NO_ATTK, NO_ATTK, NO_ATTK, NO_ATTK, NO_ATTK),
++	SIZ(WT_HUMAN, 400, 0, MS_LEADER, MZ_HUMAN), MR_COLD, 0,
++	M1_HUMANOID|M1_OMNIVORE,
++	M2_NOPOLY|M2_HUMAN|M2_PEACEFUL|M2_STRONG|M2_FEMALE|M2_PNAME|
++	  M2_COLLECT|M2_MAGIC,
++	M3_CLOSE, HI_LORD),
++#endif
+     MON("Hippocrates", S_HUMAN,
+ 	LVL(20, 12, 0, 40, 0), (G_NOGEN|G_UNIQ),
+ 	A(ATTK(AT_WEAP, AD_PHYS, 1, 6),
+@@ -3233,6 +3253,17 @@
+ 	  M2_GREEDY|M2_JEWELS|M2_COLLECT|M2_MAGIC,
+ 	M3_WANTSARTI|M3_WAITFORU|M3_INFRAVISION|M3_INFRAVISIBLE, HI_LORD),
+ #endif
++#ifdef FIGHTER
++    MON("Toliman", S_HUMAN,
++	LVL(15, 10, 10, 0, -15), (G_NOGEN|G_UNIQ),
++	A(ATTK(AT_WEAP, AD_PHYS, 2, 6), ATTK(AT_WEAP, AD_PHYS, 2, 6),
++	  ATTK(AT_CLAW, AD_SAMU, 1, 6), NO_ATTK, NO_ATTK, NO_ATTK),
++	SIZ(750, 350, 0, MS_NEMESIS, MZ_HUMAN), 0, 0,
++	M1_HUMANOID|M1_OMNIVORE,
++	M2_NOPOLY|M2_ORC|M2_HOSTILE|M2_STRONG|M2_STALK|M2_NASTY|M2_FEMALE|M2_PNAME|
++	  M2_GREEDY|M2_JEWELS|M2_COLLECT|M2_MAGIC,
++	M3_WANTSARTI|M3_WAITFORU, HI_LORD),
++#endif
+     MON("Cyclops", S_GIANT,
+ 	LVL(18, 12, 0, 0, -15), (G_NOGEN|G_UNIQ),
+ 	A(ATTK(AT_WEAP, AD_PHYS, 4, 8), ATTK(AT_WEAP, AD_PHYS, 4, 8),
+@@ -3365,6 +3396,15 @@
+ 	M2_NOPOLY|M2_ELF|M2_PEACEFUL|M2_COLLECT,
+ 	M3_INFRAVISION|M3_INFRAVISIBLE, HI_DOMESTIC),
+ #endif
++#ifdef FIGHTER
++    MON("swordsman", S_HUMAN,
++	LVL(5, 12, 10, 10, 7), G_NOGEN,
++	A(ATTK(AT_WEAP, AD_PHYS, 2, 4), ATTK(AT_MAGC, AD_CLRC, 0, 0),
++	  NO_ATTK, NO_ATTK, NO_ATTK, NO_ATTK),
++	SIZ(WT_HUMAN, 350, 0, MS_GUARDIAN, MZ_HUMAN), MR_SLEEP, MR_SLEEP,
++	M1_HUMANOID|M1_SEE_INVIS|M1_OMNIVORE,
++	M2_NOPOLY|M2_HUMAN|M2_PEACEFUL|M2_COLLECT, 0, HI_DOMESTIC),
++#endif
+     MON("attendant", S_HUMAN,
+ 	LVL(5, 12, 10, 10, 3), G_NOGEN,
+ 	A(ATTK(AT_WEAP, AD_PHYS, 1, 6),
+diff -aurbN nethack-3.4.3/src/mplayer.c nethack-3.4.3-fighter/src/mplayer.c
+--- nethack-3.4.3/src/mplayer.c	2008-12-21 17:00:27.000000000 +0900
++++ nethack-3.4.3-fighter/src/mplayer.c	2009-01-29 22:46:24.000000000 +0900
+@@ -190,6 +190,11 @@
+ 		    else if (rn2(2)) weapon = CLUB;
+ 		    if (helm == HELM_OF_BRILLIANCE) helm = STRANGE_OBJECT;
+ 		    break;
++#ifdef FIGHTER
++		case PM_FIGHTER:
++		    weapon = SHORT_SWORD;
++		    break;
++#endif
+ 		case PM_HEALER:
+ 		    if (rn2(4)) weapon = QUARTERSTAFF;
+ 		    else if (rn2(2)) weapon = rn2(2) ? UNICORN_HORN : SCALPEL;
+diff -aurbN nethack-3.4.3/src/role.c nethack-3.4.3-fighter/src/role.c
+--- nethack-3.4.3/src/role.c	2008-12-21 17:00:27.000000000 +0900
++++ nethack-3.4.3-fighter/src/role.c	2009-01-29 22:46:24.000000000 +0900
+@@ -173,6 +173,53 @@
+ 	{  1, 0,  0, 1,  0, 1 },10,	/* Energy */
+ 	0, 12, 0, 1,  8, A_INT, SPE_DIG,             -4
+ },
++#ifdef FIGHTER
++{	{"Fighter", 0}, {
++#if 1 /*JP*/
++	"戦士", 0}, {
++#endif
++#if 0 /*JP*/
++	{"Alcor",	0},
++	{"Dubhe",	0},
++	{"Merak",	0},
++	{"Phecda",	0},
++	{"Megrez",	0},
++	{"Alioth",	0},
++	{"Mizar",	0},
++	{"Benetnash",	0},
++	{"Polaris",	0} },
++#else
++	{"洞明の剣",	0},
++	{"貪狼の剣",	0},
++	{"巨門の剣",	0},
++	{"禄存の剣",	0},
++	{"文曲の剣",	0},
++	{"廉貞の剣",	0},
++	{"武曲の剣",	0},
++	{"破軍の剣",	0},
++	{"北辰の剣",	0} },
++#endif
++	"Sol", "Terra", "Luna",
++#if 0 /*JP*/
++	"Fig", "the Starry Rift", "Stella Maris",
++#else
++	"Fig", "リフト", "星海",
++#endif
++	PM_FIGHTER, NON_PM, NON_PM,
++	PM_RIGIL, PM_SWORDSMAN, PM_TOLIMAN,
++	PM_AIR_ELEMENTAL, PM_SNAKE, S_SNAKE, S_ZOMBIE,
++	ART_FORTUNE_SWORD,
++	MH_HUMAN|MH_ELF|MH_GNOME | ROLE_MALE|ROLE_FEMALE |
++	  ROLE_NEUTRAL|ROLE_CHAOTIC,
++	/* Str Int Wis Dex Con Cha */
++	{  10,  9,  7,  9,  9,  7 },
++	{  30, 10, 10, 20, 20, 10 },
++	/* Init   Lower  Higher */
++	{ 12, 0,  0, 8,  1, 0 },	/* Hit points */
++	{  2, 2,  0, 2,  0, 2 },10,	/* Energy */
++	0, 1, 1, 10, 20, A_CHA, SPE_CHARM_MONSTER, -4
++},
++#endif
+ {	{"Healer", 0}, {
+ #if 1 /*JP*/
+ 	 "薬師", 0}, {
+diff -aurbN nethack-3.4.3/src/u_init.c nethack-3.4.3-fighter/src/u_init.c
+--- nethack-3.4.3/src/u_init.c	2003-12-08 08:39:13.000000000 +0900
++++ nethack-3.4.3-fighter/src/u_init.c	2009-01-29 22:50:43.000000000 +0900
+@@ -55,6 +55,15 @@
+ 	{ LEATHER_ARMOR, 0, ARMOR_CLASS, 1, UNDEF_BLESS },
+ 	{ 0, 0, 0, 0, 0 }
+ };
++#ifdef FIGHTER
++static struct trobj Fighter[] = {
++	{ SHORT_SWORD, 1, WEAPON_CLASS, 1, UNDEF_BLESS },
++	{ DAGGER, 0, WEAPON_CLASS, 5, UNDEF_BLESS },
++	{ LEATHER_ARMOR, 1, ARMOR_CLASS, 1, UNDEF_BLESS },
++	{ RIN_INCREASE_ACCURACY, 2, RING_CLASS, 1, UNDEF_BLESS },
++	{ 0, 0, 0, 0, 0 }
++};
++#endif
+ static struct trobj Healer[] = {
+ 	{ SCALPEL, 0, WEAPON_CLASS, 1, UNDEF_BLESS },
+ 	{ LEATHER_GLOVES, 1, ARMOR_CLASS, 1, UNDEF_BLESS },
+@@ -303,6 +312,18 @@
+     { P_NONE, 0 }
+ };
+ 
++#ifdef FIGHTER
++static struct def_skill Skill_F[] = {
++    { P_DAGGER, P_EXPERT },		{ P_KNIFE, P_EXPERT },
++    { P_SHORT_SWORD, P_EXPERT },	{ P_BROAD_SWORD, P_EXPERT },
++    { P_LONG_SWORD, P_EXPERT },		{ P_TWO_HANDED_SWORD, P_EXPERT },
++    { P_SCIMITAR, P_EXPERT },		{ P_SABER, P_EXPERT },
++    { P_TWO_WEAPON_COMBAT, P_EXPERT },	{ P_BARE_HANDED_COMBAT, P_SKILLED },
++    { P_CLERIC_SPELL, P_SKILLED },
++    { P_NONE, 0 }
++};
++#endif
++
+ static const struct def_skill Skill_H[] = {
+     { P_DAGGER, P_SKILLED },		{ P_KNIFE, P_EXPERT },
+     { P_SHORT_SWORD, P_SKILLED },	{ P_SCIMITAR, P_BASIC },
+@@ -628,6 +649,15 @@
+ 		ini_inv(Cave_man);
+ 		skill_init(Skill_C);
+ 		break;
++#ifdef FIGHTER
++	case PM_FIGHTER:
++		u.uen = u.uenmax += rn1(4, 1);
++		ini_inv(Fighter);
++		skill_init(Skill_F);
++		knows_class(WEAPON_CLASS);
++		knows_class(ARMOR_CLASS);
++		break;
++#endif
+ 	case PM_HEALER:
+ #ifndef GOLDOBJ
+ 		u.ugold = u.ugold0 = rn1(1000, 1001);
+@@ -857,6 +887,9 @@
+      case PM_ARCHEOLOGIST:	skills = Skill_A; break;
+      case PM_BARBARIAN:		skills = Skill_B; break;
+      case PM_CAVEMAN:		skills = Skill_C; break;
++#ifdef FIGHTER
++     case PM_FIGHTER:		skills = Skill_F; break;
++#endif
+      case PM_HEALER:		skills = Skill_H; break;
+      case PM_KNIGHT:		skills = Skill_K; break;
+      case PM_MONK:		skills = Skill_Mon; break;
+diff -aurbN nethack-3.4.3/src/weapon.c nethack-3.4.3-fighter/src/weapon.c
+--- nethack-3.4.3/src/weapon.c	2008-12-21 17:00:27.000000000 +0900
++++ nethack-3.4.3-fighter/src/weapon.c	2009-01-29 22:46:24.000000000 +0900
+@@ -1239,6 +1239,19 @@
+     } else if (type == P_TWO_WEAPON_COMBAT) {
+ 	skill = P_SKILL(P_TWO_WEAPON_COMBAT);
+ 	if (P_SKILL(wep_type) < skill) skill = P_SKILL(wep_type);
++#ifdef FIGHTER
++if (Role_if(PM_FIGHTER)) {
++	switch (skill) {
++	    default: impossible(bad_skill, skill);
++	    case P_ISRESTRICTED:
++	    case P_UNSKILLED:   bonus = -5; break;
++	    case P_BASIC:	bonus = -2; break;
++	    case P_SKILLED:	bonus =  0; break;
++	    case P_EXPERT:	bonus =  2; break;
++    }
++ }
++else {
++#endif
+ 	switch (skill) {
+ 	    default: impossible(bad_skill, skill); /* fall through */
+ 	    case P_ISRESTRICTED:
+@@ -1247,6 +1260,9 @@
+ 	    case P_SKILLED:	bonus = -5; break;
+ 	    case P_EXPERT:	bonus = -3; break;
+ 	}
++#ifdef FIGHTER
++ }
++#endif
+     } else if (type == P_BARE_HANDED_COMBAT) {
+ 	/*
+ 	 *	       b.h.  m.a.
+@@ -1308,6 +1324,19 @@
+     } else if (type == P_TWO_WEAPON_COMBAT) {
+ 	skill = P_SKILL(P_TWO_WEAPON_COMBAT);
+ 	if (P_SKILL(wep_type) < skill) skill = P_SKILL(wep_type);
++#ifdef FIGHTER
++if (Role_if(PM_FIGHTER)) {
++	switch (skill) {
++	    default:
++	    case P_ISRESTRICTED:
++	    case P_UNSKILLED:	bonus = -2; break;
++	    case P_BASIC:	bonus =  0; break;
++	    case P_SKILLED:	bonus =  1; break;
++	    case P_EXPERT:	bonus =  2; break;
++	}
++ }
++else {
++#endif
+ 	switch (skill) {
+ 	    default:
+ 	    case P_ISRESTRICTED:
+@@ -1316,6 +1345,9 @@
+ 	    case P_SKILLED:	bonus = 0; break;
+ 	    case P_EXPERT:	bonus = 1; break;
+ 	}
++#ifdef FIGHTER
++ }
++#endif
+     } else if (type == P_BARE_HANDED_COMBAT) {
+ 	/*
+ 	 *	       b.h.  m.a.
+@@ -1383,6 +1415,11 @@
+ 		P_SKILL(P_ATTACK_SPELL) = P_BASIC;
+ 		P_SKILL(P_ENCHANTMENT_SPELL) = P_BASIC;
+ 	}
++#ifdef FIGHTER
++	else if(Role_if(PM_FIGHTER)){
++		P_SKILL(P_CLERIC_SPELL) = P_BASIC;
++	}
++#endif
+ 
+ 	/* walk through array to set skill maximums */
+ 	for (; class_skill->skill != P_NONE; class_skill++) {
+diff -aurbN nethack-3.4.3/sys/unix/Makefile.dat nethack-3.4.3-fighter/sys/unix/Makefile.dat
+--- nethack-3.4.3/sys/unix/Makefile.dat	2008-12-21 17:00:27.000000000 +0900
++++ nethack-3.4.3-fighter/sys/unix/Makefile.dat	2009-01-29 22:46:24.000000000 +0900
+@@ -119,12 +119,13 @@
+ 	touch spec_levs
+ 
+ quest_levs: ../util/lev_comp \
+-	Arch.des Barb.des Caveman.des Healer.des Knight.des Monk.des \
++	Arch.des Barb.des Caveman.des Fighter.des Healer.des Knight.des Monk.des \
+ 	Priest.des Ranger.des Rogue.des Samurai.des Tourist.des Valkyrie.des \
+ 	Wizard.des
+ 	../util/lev_comp Arch.des
+ 	../util/lev_comp Barb.des
+ 	../util/lev_comp Caveman.des
++	../util/lev_comp Fighter.des
+ 	../util/lev_comp Healer.des
+ 	../util/lev_comp Knight.des
+ 	../util/lev_comp Monk.des
+diff -aurbN nethack-3.4.3/util/makedefs.c nethack-3.4.3-fighter/util/makedefs.c
+--- nethack-3.4.3/util/makedefs.c	2008-12-21 17:00:28.000000000 +0900
++++ nethack-3.4.3-fighter/util/makedefs.c	2009-01-29 22:46:24.000000000 +0900
+@@ -751,6 +751,9 @@
+ #ifdef EXP_ON_BOTL
+ 		"experience points on status line",
+ #endif
++#ifdef FIGHTER
++		"fighter",
++#endif
+ #ifdef MFLOPPY
+ 		"floppy drive support",
+ #endif

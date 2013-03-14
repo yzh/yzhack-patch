@@ -1,0 +1,1278 @@
+diff -aurbN nethack-3.4.3/dat/Medium.des nethack-3.4.3-miko/dat/Medium.des
+--- nethack-3.4.3/dat/Medium.des	1970-01-01 09:00:00.000000000 +0900
++++ nethack-3.4.3-miko/dat/Medium.des	2007-09-19 07:47:55.000000000 +0900
+@@ -0,0 +1,274 @@
++# start
++MAZE: "Med-strt",' '
++FLAGS: noteleport,hardfloor
++GEOMETRY:center,center
++MAP
++.........TTTTTTTTTTT.....TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
++.......TTT...TTTT...TT..TTTTTTTTTTT...PP...TTTTTTT.TTTTTTTTTTTTTTTTTTTTTTTTT
++......TT.....TTTTTTTTTTTTTTTTTTTTT..PPPPP.TT....TTTTTTTTTTTTTTTTTTTTTTTTTTTT
++...TTT......T.......TT.TTTTTTTTTT.PPPPPPP.........T.TTTTTTTTTTTTTTTTTTTTTTTT
++....TTT..TTT...TTTT..TT...T.TTT...PPPPPP...........TTTTTTTTTTTTTTTTTTTTTTTTT
++...TT.TTT.....TT.TTTT..TTTTTTTT.....PP...-------..T.TTTTTTTTTTTTTTTTTTTTTTTT
++...........TTT......TT..TTT..TTTT......--|.....+...TTTTTTTTTTTTTTTTTTT..TTTT
++...TT..T......T..TT.......TTTT.........|.----+----..TTTTTTTTTTTTTTT.....TTTT
++...........T......TTTTTTTTT......------|.........|...TTTTTTTTTTTTTT.TT..TTTT
++.......T..TTT...........T........+.....+.........|...TTTT.TTT.......TTTTTTTT
++.................................+.....+.........|.T...T......TTTTTTTTTTTTTT
++.....TT.......TTTT..TTT.....T....------|.........|.TTT...TTTTTTTTTTTTTTTTTTT
++....TT....TTTT...TTT.TTTTTT...T........|.----+----..TTTTTTTTTTTTTTTTTTTTTTTT
++.....TTT..........TTTT....TTT...TTT....--|.....+.....TTTTTTTTTTTTTTTTTTTTTTT
++.......TTT.....TTTT.TTT......TTT.........-------....TTTTTTTTTTTTTTTTTTTTTTTT
++........TTT...T....TTTTTTT.....T.TTT.............TTTTTTTTTTTTTTTTTTTTTTTTTTT
++....TTT........TT..TT......T...TTTTTTTTT.TT....TTTTTTTTTTTTTTTTTTTTTTTTTTTTT
++........TTTTTT....TTTTTTTT..TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
++......TTT.....TT.TTTTTTTT......TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
++.......TT.....T...TTTTTTT......TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
++ENDMAP
++# Dungeon Description
++REGION:(00,00,75,19),lit,"ordinary"
++# Portal arrival point
++BRANCH: (03,14,03,14),(0,0,0,0)
++# Stairs
++STAIR: (71,07), down
++# Doors
++DOOR: locked,(47,06)
++DOOR: locked,(45,07)
++DOOR: locked,(33,09)
++DOOR: locked,(39,09)
++DOOR: locked,(33,10)
++DOOR: locked,(39,10)
++DOOR: locked,(45,12)
++DOOR: locked,(47,13)
++MONSTER:'@',"Shinto Priest",(46,9)
++OBJECT:'(',"chest",(46,10)
++MONSTER:'@',"maiden",(42,9)
++MONSTER:'@',"maiden",(42,10)
++MONSTER:'@',"maiden",(43,9)
++MONSTER:'@',"maiden",(43,10)
++MONSTER:'@',"maiden",random
++MONSTER:'@',"maiden",random
++MONSTER:'@',"maiden",random
++MONSTER:'@',"maiden",random
++NON_DIGGABLE:(00,00,75,19)
++TRAP:"arrow",random
++TRAP:"arrow",random
++TRAP:"arrow",random
++TRAP:"arrow",random
++TRAP:"arrow",random
++TRAP:"arrow",random
++MONSTER: 'd',"fox",(03,10)
++MONSTER: 'd',"fox",(08,08)
++MONSTER: 'd',"fox",(09,11)
++MONSTER: 'd',"fox",(12,13)
++MONSTER: 'd',"fox",(12,15)
++MONSTER: 'd',"fox",(15,09)
++MONSTER: 'd',"fox",(16,06)
++MONSTER: 'd',"fox",(18,10)
++MONSTER: 'd',"fox",(21,07)
++MONSTER: 'd',"fox",(24,14)
++MONSTER: 'd',"fox",(25,10)
++MONSTER: 'd',"fox",(28,08)
++MONSTER: 'd',"fox",(28,10)
++MONSTER: 'd',"fox",(29,15)
++MONSTER: 'd',"fox",(30,09)
++MONSTER: 'd',"fox",(45,03)
++MONSTER: 'd',"fox",(45,16)
++MONSTER: 'd',"fox spirit",(63,09)
++MONSTER: 'd',"fox spirit",(68,07)
++
++#
++#	The "locate" level for the quest.
++#
++MAZE: "Med-loca",random
++FLAGS: hardfloor
++INIT_MAP: ' ' , ' ' , false , false , unlit , false
++GEOMETRY: center,center
++MAP
++                               ..T...................
++                               .T.T..TTT.....T.......TT
++            ....              ..T..TTTT.....T....T.TTTTTT
++          ........           ..T........TTT..TT..........
++          ..........       ..TTT....TTT........T....T......
++   ...   .....   ...      ..T......T...T..TT.....T...T......
++   ...   ....    .....  ...TT..T..TTT...........T.....T......
++ ...........    ...........T....T.......T..T..T...T.....T....
++ .........     .... . ...T......TTT...T............T.........
++ .   .....    ...        ..........T........TTT..T...TT......
++       .........        TT..TT......T...T......T....TTT..T.TT
++        ......            ...T.T.T...TTT...T.....T...........
++          ..              ......T..T.........TTT.....T.T.T..
++           .              T...TT.....T.....T......T.....T.T
++                         .....TT..TT...T.........TT.T....
++                         ....TTTT......T.T..T..TT....T.
++                           ....TT...T......T.T.....TT
++ENDMAP
++STAIR: (58,05),up
++STAIR: (04,07),down
++MONSTER: 'd',"fox spirit",random
++MONSTER: 'd',"fox spirit",random
++MONSTER: 'd',"fox spirit",random
++MONSTER: 'd',"fox spirit",random
++# Random traps
++TRAP:"arrow",random
++TRAP:"arrow",random
++TRAP:"arrow",random
++TRAP:"arrow",random
++TRAP:"arrow",random
++TRAP:"arrow",random
++
++
++#
++#	The "goal" level for the quest.
++#
++MAZE: "Med-goal", ' '
++GEOMETRY:center,center
++MAP
++                                                                  
++                                                                  
++    ......                    .......                             
++    ...........               ...PP...         ......             
++    ...........                P.P.......    .........   .        
++     ...............           .P...    ..  ..............        
++     .      .........         .PP.       .  ...........           
++     .          .......     .....P       ..........  .            
++     .          ........    ......             .     .            
++    -S--         .......   ........   .              .            
++   --..|         ....      .....   ......            .            
++   |...|        ....      ......    .....................  .      
++   |..--           .      ..         ......         .......       
++   ----            .........                         ....         
++                                                                  
++                                                                  
++ENDMAP
++# Dungeon Description
++NON_DIGGABLE: (00,00,65,15)
++# Stairs
++STAIR: (05,11),up
++# Objects
++OBJECT:')',"athame",(53,05),blessed,0,"The Holy Dagger"
++OBJECT: '*',"diamond",random
++OBJECT: '*',"diamond",random
++OBJECT: '*',"diamond",random
++OBJECT: '*',random,random
++OBJECT: '*',random,random
++OBJECT: '*',random,random
++OBJECT: '*',random,random
++OBJECT: '*',random,random
++OBJECT: '*',random,random
++OBJECT:random,random,random
++OBJECT:random,random,random
++OBJECT:random,random,random
++OBJECT:random,random,random
++OBJECT:random,random,random
++OBJECT:random,random,random
++# Random traps
++TRAP:"fire",random
++TRAP:"fire",random
++TRAP:"fire",random
++TRAP:"fire",random
++TRAP:random,random
++TRAP:random,random
++# Random monsters.
++MONSTER:'d',"Nine Tailed Fox",(53,05)
++MONSTER:'d',"fox spirit",random
++MONSTER:'d',"fox spirit",random
++MONSTER:'d',"fox spirit",random
++MONSTER:'d',"fox spirit",random
++MONSTER:'d',"fox spirit",random
++MONSTER:'d',"fox spirit",random
++MONSTER:'d',"fox spirit",random
++MONSTER:'d',"fox spirit",random
++MONSTER:'d',"fox spirit",random
++MONSTER:'d',"fox spirit",random
++MONSTER:'d',"fox spirit",random
++MONSTER:'d',"fox",random
++MONSTER:'d',"fox",random
++MONSTER:'d',"fox",random
++MONSTER:'d',"fox",random
++MONSTER:'d',"fox",random
++MONSTER:'d',random,random
++MONSTER:'d',random,random
++MONSTER:'d',random,random
++MONSTER:'Z',"human zombie",random
++MONSTER:'Z',"human zombie",random
++MONSTER:'Z',"human zombie",random
++MONSTER:'Z',random,random
++MONSTER:'Z',random,random
++MONSTER:'W',"wraith",random
++MONSTER:'W',"wraith",random
++MONSTER:'W',"wraith",random
++MONSTER:'W',random,random
++
++#
++#	The "fill" levels for the quest.
++#
++#	These levels are used to fill out any levels not occupied by specific
++#	levels as defined above. "filla" is the upper filler, between the
++#	start and locate levels, and "fillb" the lower between the locate
++#	and goal levels.
++#
++
++MAZE: "Med-fila" , 'T'
++INIT_MAP: '.' , 'T' , true , true , random, false
++NOMAP
++#
++STAIR: random, down
++STAIR: random, up
++#
++OBJECT: random, random, random
++OBJECT: random, random, random
++OBJECT: random, random, random
++OBJECT: random, random, random
++OBJECT: random, random, random
++OBJECT: random,random,random
++#
++MONSTER: 'd', "fox spirit", random
++MONSTER: 'd', "fox spirit", random
++MONSTER: 'd', "fox", random
++MONSTER: 'd', "fox", random
++MONSTER: 'W', "wraith", random
++MONSTER: 'Z', "human zombie", random
++MONSTER: 'Z', "human zombie", random
++#
++TRAP: "arrow", random
++TRAP: "arrow", random
++TRAP: "arrow", random
++TRAP: "arrow", random
++
++
++MAZE: "Med-filb" , ' '
++#
++INIT_MAP: '.' , ' ' , true , true , unlit, true
++NOMAP
++#
++STAIR: random, down
++STAIR: random, up
++#
++OBJECT: random, random, random
++OBJECT: random, random, random
++OBJECT: random, random, random
++OBJECT: random, random, random
++OBJECT: random, random, random
++OBJECT: random, random, random
++OBJECT: random, random, random
++OBJECT: random, random, random
++OBJECT: random,random,random
++OBJECT: random,random,random
++OBJECT: random,random,random
++#
++MONSTER: 'd', "fox spirit", random
++MONSTER: 'd', "fox spirit", random
++MONSTER: 'd', "fox spirit", random
++MONSTER: 'd', "fox spirit", random
++MONSTER: 'd', "fox spirit", random
++MONSTER: 'd', "fox spirit", random
++MONSTER: 'd', "fox spirit", random
++MONSTER: 'W', "wraith", random
++MONSTER: 'Z', "human zombie", random
++MONSTER: 'Z', "human zombie", random
++MONSTER: 'Z', "human zombie", random
++#
++TRAP: "arrow", random
++TRAP: "arrow", random
++TRAP: "arrow", random
++TRAP: "arrow", random
+diff -aurbN nethack-3.4.3/dat/jquest.txt nethack-3.4.3-miko/dat/jquest.txt
+--- nethack-3.4.3/dat/jquest.txt	2007-09-19 09:37:59.000000000 +0900
++++ nethack-3.4.3-miko/dat/jquest.txt	2007-09-19 09:44:38.000000000 +0900
+@@ -2054,6 +2054,241 @@
+ 「%pに%dの加護のあらんことを．」
+ %E
+ #
++# MEDIUM
++#
++%Cc Med 00001
++いつのまにか，あなたは懐しい%Hの前に立っていた．
++しかしここは本当に%Hだろうか？不気味な生物が敵意に満ちた視線を
++むけてくるし，いつも清らかなはずの空気までどことなく淀み，邪悪さを
++はらんでいるようだ．
++
++何があったにせよ，%lが助けを求めているのはまちがいない．
++%E
++%Cp Med 00002
++もう一度，あなたは%Hの前に来た．
++%E
++%Cp Med 00003
++あなたは再び%Hの前に来た．
++もしかしたらここに来るのはこれで最後なのかもしれない．
++%E
++%Cp Med 00005
++「ようこそ，%r．また会えてうれしいわ．」
++%E
++%Cp Med 00006
++「ああ，%p！今こそあなたの助けが必要です．」
++%E
++%Cp Med 00007
++「ようこそ，%s．%lがあなたに手助けを求めていらっしゃるわ．」
++%E
++%Cp Med 00008
++「ああ，私たちは%dにも見放されてしまったのでは…．」
++%E
++%Cp Med 00009
++「%dがあなたとともにありますように．」
++%E
++%Cp Med 00010
++「ようこそ，%r．また会えてうれしいわ．」
++%E
++%Cp Med 00011
++「まあ，%p！何もかもあなたのおかげです．ありがとう．」
++%E
++%Cp Med 00012
++「%s，よく無事で…．%oがあれば，もう怖れることはありません．」
++%E
++%Cp Med 00013
++「%dに祈りを．%nから私たちを救ってくださいました．」
++%E
++%Cp Med 00014
++「%dがあなたとともにありますように．」
++%E
++%Cc Med 00015
++「待っていたぞ，我が%S%p．よく戻ってきてくれた．
++  見てのとおり，我々の神社はいま大変な苦難に見舞われている．
++  そなたの手助けがなんとしても必要なのだ．
++  これからそなたはかつてない挑戦に立ち向かわねばならない．
++  そなたにその心構えができているかを知りたいのだ．」
++%E
++%Cp Med 00016
++「我が%Sよ，よく戻ってきた．心構えはできたか？」
++%E
++%Cp Med 00017
++「%p，ここはそなたの聖域だ．心構えはできたか？」
++%E
++%Cc Med 00018
++「なんということだ，%p！なぜそなたは%dの教えから外れた道を
++  行くのか？もはやそなたは%Hの%rではない．
++  二度とここに足を踏みいれることはまかりならぬぞ．
++  すぐに出てゆくがいい！」
++%E
++%Cc Med 00019
++「残念だが%p，そなたはまだ未熟だ．
++  %rでは%nの邪悪な力に抵抗することはできぬだろう．
++  %Rと呼ばれるまでいまいちど研鑽をつんでくるがよい．」
++%E
++%Cc Med 00020
++「なんということか，%p！そなたは正しい道を失なったのか？
++  我々が信じるのは%dのみだ．教えから外れてはならぬ．
++
++  今ならまだ間にあう．身を浄めてくるのだ．
++  それまでここに帰ることはまかりならぬ．」
++%E
++%Cc Med 00021
++「%p，そなたは十分に心構えができているようだ．
++  これから，そなたに使命を話そう．よく聞くがよい．
++
++「そなたがここを出てからのことだ．%Hの例大祭に，%nが
++  妖狐の大群を引き連れて現れたのだ．
++  我々は完全に不意をつかれた．多くの%gたちが殺され，
++  ついには%nに%oを奪われてしまった．
++
++「いまや我々はかろうじて妖狐どもから%Hを守っている．
++  このままでは%nが悪行の限りを尽くすのを黙って見ているほかない．
++
++「%nは%iの奥深くに棲んでいるはずだ．
++  %nを打ち倒し，%oを取り返してきてくれ．
++  さもなくばこの世は妖狐どもに支配されてしまう．
++  
++「さあ行くがいい，%p．%dを信じるのだ！」
++%E
++%Cp Med 00025
++「%dの力を信じるのだ．」
++%E
++%Cp Med 00026
++「%nは炎を自在にあやつる強力な妖狐だ．」
++%E
++%Cp Med 00027
++「清く明くあれ，我が%Sよ．」
++%E
++%Cp Med 00028
++「%iは暗く，見通しがきかぬ．四方に注意をはらうのだ．」
++%E
++%Cp Med 00029
++「%nは寒さに弱いと聞く．覚えておくがよい．」
++%E
++%Cp Med 00030
++「可能なら%oを奪いとるのだ．%nとの戦いが有利になる．」
++%E
++%Cp Med 00031
++「生命が危うくなったときは%dに祈るがよい．きっと助けてくださる．」
++%E
++%Cp Med 00032
++「狐どもの動きは素早い．油断するでないぞ．」
++%E
++%Cp Med 00033
++「%pよ，信仰を忘れるな．」
++%E
++%Cp Med 00034
++「%oを手にするのだ．そなたに力を与えてくれる．」
++%E
++%Cc Med 00035
++あなたは薄暗い洞窟の入口に立っている．あたりには妖気がたちこめ，この世
++のものならぬ化け物がうろついている．洞窟の中からは不気味なうめき声が聞
++こえ，怪しい狐火がちらついている．
++
++ここが%iだ．この奥に%nがいるにちがいない．
++
++あなたは逃げだしたい気持ちをなんとか抑えた．
++%E
++%Cp Med 00036
++#Again, you stand before %i.
++あなたは再び%iの前に立った．
++%E
++%Cc Med 00040
++薄暗い洞窟がどこまでも続いている．闇の奥からは，邪悪と敵意に満ちた気配
++がただよってくる．
++
++%nの住処がすぐそこにあるらしい．
++%E
++%Cp Med 00041
++あなたは再び%nの領域に入りこんだ．
++%E
++%Cc Med 00050
++あなたは闇の中に輝かしいなにかを見た．間違いない，あれこそ%oだ．
++そして%oの後ろから漂う悪意と敵意こそ，%nだ．
++
++%nが，狐火に照らしだされた姿をあらわした．
++こちらをみて邪悪な表情を浮かべている．
++戦わずに%oを取り戻すことはできないようだ．
++%E
++%Cp Med 00051
++%nは馬鹿にするように跳ねまわっている．
++%E
++%Cp Med 00052
++%nのまわりを狐火が踊っている．
++%E
++%Cp Med 00053
++%nは%oを憎らしげに睨みつけた．
++%E
++%Cp Med 00060
++%nは憎悪に満ちた目で睨みつけてきた．
++%E
++%Cp Med 00061
++%nは口から小さな狐火を吐きだした．
++%E
++%Cp Med 00062
++%nは全身の毛を逆立てて威嚇した．
++%E
++%Cp Med 00063
++%nは目にもとまらぬほど素早く跳びまわった．
++%E
++%Cp Med 00064
++%nは手下の妖狐を罵っている．
++%E
++%Cp Med 00065
++%nの尻尾が眩惑するように動いた．
++%E
++%Cp Med 00066
++%nはからかうような鳴き声をあげた．
++%E
++%Cp Med 00067
++%nは馬鹿にするような鳴き声をあげた．
++%E
++%Cp Med 00068
++%nは馬鹿にしたように鼻を鳴らした．
++%E
++%Cp Med 00069
++%nは身の毛もよだつような鳴き声をあげた．
++%E
++%Cc Med 00070
++%oを手にすると，あなたの心は澄みわたり，五感は研ぎすまされた．
++%nにとって，%oが%Hにあることがどれほどの
++恐怖だったのかを，あなたは理解した．
++
++これはできるだけすみやかに%lのもとへ返すべきだ．
++あなたはそう感じた．
++%E
++%Cc Med 00080
++%nは断末魔の悲鳴をあげると，崩れおちた．
++不思議なことに，%nの死体はあっという間にしなびていった．
++まるで千年前からその場にあったかのようだ．
++周囲を照らしていた狐火が次第に弱くなり，消えた．
++%E
++%Cc Med 00081
++「%p，よくぞ無事に帰ってきた！%oを取り戻したのだな．
++  心から感謝するぞ．
++
++「そなたが%nと戦っている間に，我々はなんとか%Hの守りを
++  固めることができた．もはや%nの脅威も消えた．
++  %oはそなたが持っていくがよい．
++  イェンダーの魔除けの探索にかならず役立つはずだ．
++  
++「さあ，我々の感謝とともに行け．%dが導いてくださろう．」
++%E
++%Cc Med 00082
++%lは%oがあなたのものであると繰り返した．
++
++「魔除け探索を再開せよ．魔法の入口の向こうで，
++  %Zがそなたを待っているぞ．」
++%E
++%Cp Med 00090
++「よくぞ帰ってきた，%p．魔除けの探索は進んでいるか？」
++%E
++%Cc Med 00091
++「%pよ，そなたはすばらしい！ついに魔除けを手にいれたのだな．
++  さあ，その魔除けを持って，天上界にある%dの祭壇に捧げるのだ．
++  そなたを心から誇りに思うぞ！」
++%E
++#
+ #	Monk
+ #
+ %Cc Mon 00001
+diff -aurbN nethack-3.4.3/dat/jtrnsmon.dat nethack-3.4.3-miko/dat/jtrnsmon.dat
+--- nethack-3.4.3/dat/jtrnsmon.dat	2007-09-19 09:37:59.000000000 +0900
++++ nethack-3.4.3-miko/dat/jtrnsmon.dat	2007-09-19 09:34:51.000000000 +0900
+@@ -44,6 +44,7 @@
+ winter wolf cub:	冬狼の子:
+ hell hound pup:		ヘルハウンドの仔:
+ hell hound:		ヘルハウンド:
++fox spirit:             妖狐:
+ Cerberus:		ケルベロス:
+ #
+ #	eyes
+@@ -170,6 +171,9 @@
+ #
+ #	unicorns
+ #
++white unicorn foal:     白ユニコーンの仔:
++gray unicorn foal:      灰色ユニコーンの仔:
++black unicorn foal:     黒ユニコーンの仔:
+ white unicorn:		白ユニコーン:
+ gray unicorn:		灰色ユニコーン:
+ black unicorn:		黒ユニコーン:
+@@ -525,6 +529,7 @@
+ Cavewoman:		洞窟人:
+ Healer:			薬師:
+ Knight:			騎士:
++Medium:			巫女:
+ Monk:			武闘家:
+ Priest:			僧侶:
+ Priestess:		尼僧:
+@@ -541,6 +546,7 @@
+ elf:			エルフ:
+ healer:			薬師:
+ knight:			騎士:
++medium:			巫女:
+ monk:			武闘家:
+ priest:			僧侶:
+ priestess:		尼僧:
+@@ -558,6 +564,7 @@
+ Shaman Karnov:		呪術師カルノフ:
+ Hippocrates:		ヒポクラテス:
+ King Arthur:		アーサー王:
++Shinto Priest:		神主:
+ Grand Master:		総師範:
+ Arch Priest:		主席司祭:
+ Orion:			勇者オリオン:
+@@ -575,6 +582,7 @@
+ Cyclops:		サイクロプス:
+ Ixoth:			イクソス:
+ Master Kaen:		カエン:
++Nine Tailed Fox:	九尾の狐:
+ Nalzok:			ナルゾク:
+ Scorpius:		大蠍:
+ Master Assassin:	暗殺者の頭領:
+@@ -590,6 +598,7 @@
+ neanderthal:		ネアンデルタール人:
+ attendant:		随行員:
+ page:			小姓:
++maiden:			乙女:
+ abbot:			師範:
+ acolyte:		侍者:
+ hunter:			ハンター:
+diff -aurbN nethack-3.4.3/dat/jtrnsobj.dat nethack-3.4.3-miko/dat/jtrnsobj.dat
+--- nethack-3.4.3/dat/jtrnsobj.dat	2007-09-19 09:37:59.000000000 +0900
++++ nethack-3.4.3-miko/dat/jtrnsobj.dat	2007-09-19 07:03:04.000000000 +0900
+@@ -839,6 +839,8 @@
+ AThe Staff of Aesculapius:	アスクレピオスの杖:
+ # K
+ AThe Magic Mirror of Merlin:	マーリンの魔法の鏡:
++# Med
++AThe Holy Dagger:		破魔の短剣:
+ # Mon
+ AThe Eyes of the Overworld:	超世界の目:
+ # P
+diff -aurbN nethack-3.4.3/include/artilist.h nethack-3.4.3-miko/include/artilist.h
+--- nethack-3.4.3/include/artilist.h	2003-12-08 08:39:13.000000000 +0900
++++ nethack-3.4.3-miko/include/artilist.h	2007-09-19 07:08:27.000000000 +0900
+@@ -186,6 +186,13 @@
+ 	NO_ATTK,	NO_DFNS,	CARY(AD_MAGM),
+ 	0,		A_LAWFUL, PM_KNIGHT, NON_PM, 1500L ),
+ 
++#ifdef MIKO
++A("The Holy Dagger",	ATHAME,
++	(SPFX_NOGEN|SPFX_RESTR|SPFX_REFLECT|SPFX_INTEL|SPFX_DFLAG2), SPFX_HPHDAM, M2_UNDEAD,
++	PHYS(5,0),	NO_DFNS,	CARY(AD_MAGM),
++	0,	A_LAWFUL, PM_MEDIUM, NON_PM, 1500L ),
++#endif
++
+ A("The Eyes of the Overworld",	LENSES,
+ 	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL|SPFX_XRAY), 0, 0,
+ 	NO_ATTK,	NO_DFNS,	CARY(AD_MAGM),
+diff -aurbN nethack-3.4.3/include/config.h nethack-3.4.3-miko/include/config.h
+--- nethack-3.4.3/include/config.h	2007-09-19 09:37:59.000000000 +0900
++++ nethack-3.4.3-miko/include/config.h	2007-09-19 09:42:24.000000000 +0900
+@@ -359,6 +359,8 @@
+ /*# define USE_MAKESINGULAR */	/* Enable singularize */
+ #endif
+ 
++#define MIKO		/* add new role Medium */
++
+ /*
+  * Section 5:  EXPERIMENTAL STUFF
+  *
+diff -aurbN nethack-3.4.3/include/extern.h nethack-3.4.3-miko/include/extern.h
+--- nethack-3.4.3/include/extern.h	2007-09-19 09:37:59.000000000 +0900
++++ nethack-3.4.3-miko/include/extern.h	2007-09-19 09:18:32.000000000 +0900
+@@ -1583,6 +1583,9 @@
+ E int NDECL(dopray);
+ E const char *NDECL(u_gname);
+ E int NDECL(doturn);
++#ifdef MIKO
++E int NDECL(dopurify);
++#endif
+ E const char *NDECL(a_gname);
+ E const char *FDECL(a_gname_at, (XCHAR_P x,XCHAR_P y));
+ E const char *FDECL(align_gname, (ALIGNTYP_P));
+@@ -2453,4 +2456,3 @@
+ #undef E
+ 
+ #endif /* EXTERN_H */
+-
+diff -aurbN nethack-3.4.3/include/skills.h nethack-3.4.3-miko/include/skills.h
+--- nethack-3.4.3/include/skills.h	2003-12-08 08:39:13.000000000 +0900
++++ nethack-3.4.3-miko/include/skills.h	2007-09-19 07:10:15.000000000 +0900
+@@ -78,7 +78,11 @@
+ #define P_NUM_SKILLS		(P_LAST_H_TO_H+1)
+ 
+ /* These roles qualify for a martial arts bonus */
+-#define martial_bonus()	(Role_if(PM_SAMURAI) || Role_if(PM_MONK))
++#ifdef MIKO
++ #define martial_bonus()	(Role_if(PM_SAMURAI) || Role_if(PM_MONK) || Role_if(PM_MEDIUM))
++#else
++ #define martial_bonus()	(Role_if(PM_SAMURAI) || Role_if(PM_MONK))
++#endif
+ 
+ 
+ /*
+diff -aurbN nethack-3.4.3/include/trampoli.h nethack-3.4.3-miko/include/trampoli.h
+--- nethack-3.4.3/include/trampoli.h	2003-12-08 08:39:13.000000000 +0900
++++ nethack-3.4.3-miko/include/trampoli.h	2007-09-19 09:19:08.000000000 +0900
+@@ -205,6 +205,9 @@
+ /* ### pray.c ### */
+ #define doturn()      doturn_()
+ #define dopray()      dopray_()
++#ifdef MIKO
++#define dopurify()    dopurify_()
++#endif
+ #define prayer_done() prayer_done_()
+ #define dosacrifice() dosacrifice_()
+ 
+diff -aurbN nethack-3.4.3/src/attrib.c nethack-3.4.3-miko/src/attrib.c
+--- nethack-3.4.3/src/attrib.c	2007-09-19 09:37:59.000000000 +0900
++++ nethack-3.4.3-miko/src/attrib.c	2007-09-19 07:34:51.000000000 +0900
+@@ -81,6 +81,13 @@
+ 	kni_abil[] = { {	 7, &(HFast), "素早さを得た", "遅くなった" },
+ 		     {	 0, 0, 0, 0 } },
+ 
++#ifdef MIKO
++	med_abil[] = { {	1, &(HStealth), "", "" },
++		       {	7, &(HSearching), "知覚力を得た", "知覚力を失った" },
++		       {	14, &(HSee_invisible), "", "" },
++		       {	0, 0, 0, 0 } },
++#endif
++
+ 	mon_abil[] = { {   1, &(HFast), "", "" },
+ 		     {   1, &(HSleep_resistance), "", "" },
+ 		     {   1, &(HSee_invisible), "", "" },
+@@ -673,6 +680,9 @@
+ 	case PM_CAVEMAN:        abil = cav_abil;	break;
+ 	case PM_HEALER:         abil = hea_abil;	break;
+ 	case PM_KNIGHT:         abil = kni_abil;	break;
++#ifdef MIKO
++	case PM_MEDIUM:         abil = med_abil;	break;
++#endif
+ 	case PM_MONK:           abil = mon_abil;	break;
+ 	case PM_PRIEST:         abil = pri_abil;	break;
+ 	case PM_RANGER:         abil = ran_abil;	break;
+diff -aurbN nethack-3.4.3/src/cmd.c nethack-3.4.3-miko/src/cmd.c
+--- nethack-3.4.3/src/cmd.c	2007-09-19 09:37:59.000000000 +0900
++++ nethack-3.4.3-miko/src/cmd.c	2007-09-19 09:09:10.000000000 +0900
+@@ -85,6 +85,9 @@
+ extern int NDECL(dosacrifice); /**/
+ extern int NDECL(dopray); /**/
+ extern int NDECL(doturn); /**/
++#ifdef MIKO
++extern int NDECL(dopurify); /**/
++#endif
+ extern int NDECL(doredraw); /**/
+ extern int NDECL(doread); /**/
+ extern int NDECL(dosave); /**/
+@@ -2080,6 +2083,9 @@
+ 	{"name", "name an item or type of object", ddocall, TRUE},
+ 	{"offer", "offer a sacrifice to the gods", dosacrifice, FALSE},
+ 	{"pray", "pray to the gods for help", dopray, TRUE},
++#ifdef MIKO
++	{"purify", "purify yourself", dopurify, TRUE},
++#endif
+ 	{"quit", "exit without saving current game", done2, TRUE},
+ #ifdef STEED
+ 	{"ride", "ride (or stop riding) a monster", doride, FALSE},
+@@ -2107,6 +2113,9 @@
+ 	{"name", "アイテムや物に名前をつける", ddocall, TRUE},
+ 	{"offer", "神に供物を捧げる", dosacrifice, FALSE},
+ 	{"pray", "神に祈る", dopray, TRUE},
++#ifdef MIKO
++	{"purify", "みそぎをする", dopurify, TRUE},
++#endif
+ 	{"quit", "セーブしないで終了", done2, TRUE},
+ #ifdef STEED
+ 	{"ride", "怪物に乗る(または降りる)", doride, FALSE},
+diff -aurbN nethack-3.4.3/src/dog.c nethack-3.4.3-miko/src/dog.c
+--- nethack-3.4.3/src/dog.c	2007-09-19 09:37:59.000000000 +0900
++++ nethack-3.4.3-miko/src/dog.c	2007-09-19 07:14:44.000000000 +0900
+@@ -162,6 +162,10 @@
+ 		petname = dogname;
+ 	else if (pettype == PM_PONY)
+ 		petname = horsename;
++#ifdef MIKO
++	else if (pettype == PM_WHITE_UNICORN_FOAL)
++		petname = horsename;
++#endif
+ 	else
+ 		petname = catname;
+ 
+diff -aurbN nethack-3.4.3/src/dothrow.c nethack-3.4.3-miko/src/dothrow.c
+--- nethack-3.4.3/src/dothrow.c	2007-09-19 09:37:59.000000000 +0900
++++ nethack-3.4.3-miko/src/dothrow.c	2007-09-19 07:37:53.000000000 +0900
+@@ -145,6 +145,11 @@
+ 	    }
+ 	    /* ...or is using a special weapon for their role... */
+ 	    switch (Role_switch) {
++#ifdef MIKO
++	    case PM_MEDIUM:
++		if (obj->otyp == YA && uwep && uwep->otyp == YUMI) multishot += 2; else multishot++;
++		break;
++#endif
+ 	    case PM_RANGER:
+ 		multishot++;
+ 		break;
+@@ -1507,12 +1512,23 @@
+ 		     * especially their own special types of bow.
+ 		     * Polymorphing won't make you a bow expert.
+ 		     */
++#ifdef MIKO
++		    if ((Race_if(PM_ELF) || Role_if(PM_SAMURAI) || Role_if(PM_MEDIUM)) &&
++				(!Upolyd || your_race(youmonst.data)) &&
++				objects[uwep->otyp].oc_skill == P_BOW) {
++			tmp++;
++			if (Race_if(PM_ELF) && uwep->otyp == ELVEN_BOW)
++			    tmp++;
++			else if (Role_if(PM_MEDIUM) && uwep->otyp == YUMI)
++			    tmp++;
++#else
+ 		    if ((Race_if(PM_ELF) || Role_if(PM_SAMURAI)) &&
+ 				(!Upolyd || your_race(youmonst.data)) &&
+ 				objects[uwep->otyp].oc_skill == P_BOW) {
+ 			tmp++;
+ 			if (Race_if(PM_ELF) && uwep->otyp == ELVEN_BOW)
+ 			    tmp++;
++#endif
+ 			else if (Role_if(PM_SAMURAI) && uwep->otyp == YUMI)
+ 			    tmp++;
+ 		    }
+diff -aurbN nethack-3.4.3/src/makemon.c nethack-3.4.3-miko/src/makemon.c
+--- nethack-3.4.3/src/makemon.c	2007-09-19 09:37:59.000000000 +0900
++++ nethack-3.4.3-miko/src/makemon.c	2007-09-19 07:39:09.000000000 +0900
+@@ -993,6 +993,9 @@
+ 			if (Race_if(PM_ELF)) mtmp->mpeaceful = FALSE;
+ 			break;
+ 		case S_UNICORN:
++#ifdef MIKO                /* horses always friendly to medium */
++			if (Role_if(PM_MEDIUM))  mtmp->mpeaceful = TRUE; else
++#endif
+ 			if (is_unicorn(ptr) &&
+ 					sgn(u.ualign.type) == sgn(ptr->maligntyp))
+ 				mtmp->mpeaceful = TRUE;
+diff -aurbN nethack-3.4.3/src/mondata.c nethack-3.4.3-miko/src/mondata.c
+--- nethack-3.4.3/src/mondata.c	2007-09-19 09:37:59.000000000 +0900
++++ nethack-3.4.3-miko/src/mondata.c	2007-09-19 07:42:32.000000000 +0900
+@@ -453,6 +453,9 @@
+ 		{ "grey dragon",	PM_GRAY_DRAGON },
+ 		{ "baby grey dragon",	PM_BABY_GRAY_DRAGON },
+ 		{ "grey unicorn",	PM_GRAY_UNICORN },
++#ifdef MIKO
++		{ "grey unicorn foal",  PM_GRAY_UNICORN_FOAL },
++#endif
+ 		{ "grey ooze",		PM_GRAY_OOZE },
+ 		{ "gray-elf",		PM_GREY_ELF },
+ 	    /* Hyphenated names */
+@@ -565,6 +568,11 @@
+ 	{PM_HELL_HOUND_PUP, PM_HELL_HOUND},
+ 	{PM_WINTER_WOLF_CUB, PM_WINTER_WOLF},
+ 	{PM_KITTEN, PM_HOUSECAT}, {PM_HOUSECAT, PM_LARGE_CAT},
++#ifdef MIKO
++	{PM_WHITE_UNICORN_FOAL, PM_WHITE_UNICORN},
++	{PM_GRAY_UNICORN_FOAL, PM_GRAY_UNICORN},
++	{PM_BLACK_UNICORN_FOAL, PM_BLACK_UNICORN},
++#endif
+ 	{PM_PONY, PM_HORSE}, {PM_HORSE, PM_WARHORSE},
+ 	{PM_KOBOLD, PM_LARGE_KOBOLD}, {PM_LARGE_KOBOLD, PM_KOBOLD_LORD},
+ 	{PM_GNOME, PM_GNOME_LORD}, {PM_GNOME_LORD, PM_GNOME_KING},
+diff -aurbN nethack-3.4.3/src/monst.c nethack-3.4.3-miko/src/monst.c
+--- nethack-3.4.3/src/monst.c	2003-12-08 08:39:13.000000000 +0900
++++ nethack-3.4.3-miko/src/monst.c	2007-10-15 21:01:14.000000000 +0900
+@@ -299,6 +299,16 @@
+ 	SIZ(600, 300, 0, MS_BARK, MZ_MEDIUM), MR_FIRE, MR_FIRE,
+ 	M1_ANIMAL|M1_NOHANDS|M1_CARNIVORE, M2_HOSTILE|M2_STRONG,
+ 	M3_INFRAVISIBLE, CLR_RED),
++#ifdef MIKO
++    MON("fox spirit", S_DOG,
++	LVL(7, 12, 4, 40, -7), (G_NOHELL|G_GENO|1),
++	A(ATTK(AT_BITE, AD_PHYS, 2, 4), ATTK(AT_GAZE, AD_FIRE, 1, 2),
++	  NO_ATTK, NO_ATTK, NO_ATTK, NO_ATTK),
++	SIZ(300, 250, 0, MS_BARK, MZ_SMALL), MR_FIRE, 0,
++	M1_ANIMAL|M1_NOHANDS|M1_CARNIVORE, M2_HOSTILE, M3_INFRAVISIBLE,
++	HI_GOLD),
++#endif
++
+ #ifdef CHARON
+     MON("Cerberus", S_DOG,
+ 	LVL(12, 10, 2, 20, -7), (G_HELL|G_UNIQ|1),
+@@ -889,6 +899,29 @@
+ /*
+  * unicorns and horses
+  */
++#ifdef MIKO
++    MON("white unicorn foal", S_UNICORN,
++	LVL(3, 16, 6, 20, 7), (G_GENO|2),
++	A(ATTK(AT_BITE, AD_PHYS, 1, 2), ATTK(AT_KICK, AD_PHYS, 1, 6),
++	  NO_ATTK, NO_ATTK, NO_ATTK, NO_ATTK),
++	SIZ(1300, 250, 0, MS_NEIGH, MZ_MEDIUM), MR_POISON, MR_POISON,
++	M1_NOHANDS|M1_HERBIVORE, M2_WANDER|M2_STRONG|M2_JEWELS,
++	M3_INFRAVISIBLE, CLR_WHITE),
++    MON("gray unicorn foal", S_UNICORN,
++	LVL(3, 16, 6, 20, 0), (G_GENO|1),
++	A(ATTK(AT_BITE, AD_PHYS, 1, 2), ATTK(AT_KICK, AD_PHYS, 1, 6),
++	  NO_ATTK, NO_ATTK, NO_ATTK, NO_ATTK),
++	SIZ(1300, 250, 0, MS_NEIGH, MZ_MEDIUM), MR_POISON, MR_POISON,
++	M1_NOHANDS|M1_HERBIVORE, M2_WANDER|M2_STRONG|M2_JEWELS,
++	M3_INFRAVISIBLE, CLR_GRAY),
++    MON("black unicorn foal", S_UNICORN,
++	LVL(3, 16, 6, 20, -7), (G_GENO|1),
++	A(ATTK(AT_BITE, AD_PHYS, 1, 2), ATTK(AT_KICK, AD_PHYS, 1, 6),
++	  NO_ATTK, NO_ATTK, NO_ATTK, NO_ATTK),
++	SIZ(1300, 250, 0, MS_NEIGH, MZ_MEDIUM), MR_POISON, MR_POISON,
++	M1_NOHANDS|M1_HERBIVORE, M2_WANDER|M2_STRONG|M2_JEWELS,
++	M3_INFRAVISIBLE, CLR_BLACK),
++#endif
+     MON("white unicorn", S_UNICORN,
+ 	LVL(4, 24, 2, 70, 7), (G_GENO|2),
+ 	A(ATTK(AT_BUTT, AD_PHYS, 1,12), ATTK(AT_KICK, AD_PHYS, 1, 6),
+@@ -2965,6 +2998,16 @@
+ 	SIZ(WT_HUMAN, 400, 0, MS_HUMANOID, MZ_HUMAN), 0, 0,
+ 	M1_HUMANOID|M1_OMNIVORE,
+ 	M2_NOPOLY|M2_HUMAN|M2_STRONG|M2_COLLECT, M3_INFRAVISIBLE, HI_DOMESTIC),
++#ifdef MIKO
++    MON("medium", S_HUMAN,
++	LVL(10, 12, 10, 2, 3), G_NOGEN,
++	A(ATTK(AT_WEAP, AD_PHYS, 1, 6),
++	  NO_ATTK, NO_ATTK, NO_ATTK, NO_ATTK, NO_ATTK),
++	SIZ(WT_HUMAN, 400, 0, MS_HUMANOID, MZ_HUMAN), 0, 0,
++	M1_HUMANOID|M1_OMNIVORE,
++	M2_NOPOLY|M2_HUMAN|M2_STRONG|M2_FEMALE|M2_COLLECT, M3_INFRAVISIBLE,
++	HI_DOMESTIC),
++#endif
+     MON("monk", S_HUMAN, 
+ 	LVL(10, 12, 10, 2, 0), G_NOGEN,
+ 	A(ATTK(AT_CLAW, AD_PHYS, 1, 8), ATTK(AT_KICK, AD_PHYS, 1, 8),
+@@ -3107,6 +3150,18 @@
+ 	M2_NOPOLY|M2_HUMAN|M2_PNAME|M2_PEACEFUL|M2_STRONG|M2_MALE|
+ 	  M2_COLLECT|M2_MAGIC,
+ 	M3_CLOSE|M3_INFRAVISIBLE, HI_LORD),
++#ifdef MIKO
++    MON("Shinto Priest", S_HUMAN,
++	LVL(25, 12, 7, 70, 0), (G_NOGEN|G_UNIQ),
++	A(ATTK(AT_WEAP, AD_PHYS, 4,10), ATTK(AT_KICK, AD_PHYS, 2, 8),
++	  ATTK(AT_MAGC, AD_CLRC, 2, 8), ATTK(AT_MAGC, AD_CLRC, 2, 8),
++	  NO_ATTK, NO_ATTK),
++	SIZ(WT_HUMAN, 400, 0, MS_LEADER, MZ_HUMAN),
++	MR_FIRE|MR_ELEC|MR_SLEEP|MR_POISON, 0,
++	M1_HUMANOID|M1_SEE_INVIS|M1_OMNIVORE,
++	M2_NOPOLY|M2_HUMAN|M2_PEACEFUL|M2_STRONG|M2_COLLECT|M2_MAGIC|M2_MALE,
++	M3_CLOSE|M3_INFRAVISIBLE, HI_LORD),
++#endif
+     MON("Grand Master", S_HUMAN,
+ 	LVL(25, 12, 0, 70, 0), (G_NOGEN|G_UNIQ),
+ 	A(ATTK(AT_CLAW, AD_PHYS, 4, 10), ATTK(AT_KICK, AD_PHYS, 2, 8),
+@@ -3264,6 +3319,19 @@
+ 	M2_NOPOLY|M2_HUMAN|M2_PNAME|M2_HOSTILE|M2_STRONG|M2_NASTY|
+ 	  M2_STALK|M2_COLLECT|M2_MAGIC,
+ 	M3_WANTSARTI|M3_WAITFORU|M3_INFRAVISIBLE, HI_LORD),
++#ifdef MIKO
++    MON("Nine Tailed Fox", S_DOG,
++	LVL(15, 12, 0, 80, -15), (G_NOGEN|G_UNIQ),
++	A(ATTK(AT_BREA, AD_FIRE, 3, 6), ATTK(AT_BITE, AD_PHYS, 3, 6),
++	  ATTK(AT_CLAW, AD_PHYS, 2, 6), ATTK(AT_BREA, AD_FIRE, 3, 6),
++	  NO_ATTK, NO_ATTK),
++	SIZ(300, 250, 0, MS_NEMESIS, MZ_SMALL),
++	MR_FIRE|MR_SLEEP|MR_POISON|MR_STONE, 0,
++	M1_ANIMAL|M1_NOHANDS|M1_CARNIVORE|M1_SEE_INVIS,
++	M2_NOPOLY|M2_FEMALE|M2_HOSTILE|M2_STALK|M2_STRONG|M2_NASTY|M2_MAGIC,
++	M3_WANTSARTI|M3_WAITFORU|M3_INFRAVISIBLE,
++	HI_LORD),
++#endif
+     MON("Nalzok", S_DEMON,
+ 	LVL(16, 12, -2, 85, -127), (G_NOGEN|G_UNIQ|G_NOCORPSE),
+ 	A(ATTK(AT_WEAP, AD_PHYS, 8, 4), ATTK(AT_WEAP, AD_PHYS, 4, 6),
+@@ -3381,6 +3449,16 @@
+ 	M1_HUMANOID|M1_OMNIVORE,
+ 	M2_NOPOLY|M2_HUMAN|M2_PEACEFUL|M2_STRONG|M2_COLLECT, M3_INFRAVISIBLE,
+ 	HI_DOMESTIC),
++#ifdef MIKO
++    MON("maiden", S_HUMAN,
++	LVL(5, 12, 10, 20, 0), G_NOGEN,
++	A(ATTK(AT_WEAP, AD_PHYS, 1, 6), ATTK(AT_MAGC, AD_CLRC, 0, 0),
++	  NO_ATTK, NO_ATTK, NO_ATTK, NO_ATTK),
++	SIZ(WT_HUMAN, 400, 0, MS_GUARDIAN, MZ_HUMAN), 0, 0,
++	M1_HUMANOID|M1_OMNIVORE,
++	M2_NOPOLY|M2_HUMAN|M2_PEACEFUL|M2_STRONG|M2_COLLECT|M2_FEMALE, M3_INFRAVISIBLE,
++	HI_DOMESTIC),
++#endif
+     MON("abbot", S_HUMAN, 
+ 	LVL(5, 12, 10, 20, 0), G_NOGEN,
+ 	A(ATTK(AT_CLAW, AD_PHYS, 8, 2), ATTK(AT_KICK, AD_STUN, 3, 2),
+diff -aurbN nethack-3.4.3/src/mplayer.c nethack-3.4.3-miko/src/mplayer.c
+--- nethack-3.4.3/src/mplayer.c	2007-09-19 09:37:59.000000000 +0900
++++ nethack-3.4.3-miko/src/mplayer.c	2007-10-15 07:27:47.000000000 +0900
+@@ -200,6 +200,11 @@
+ 		    if (rn2(4)) weapon = LONG_SWORD;
+ 		    if (rn2(2)) armor = rnd_class(PLATE_MAIL, CHAIN_MAIL);
+ 		    break;
++#ifdef MIKO
++		case PM_MEDIUM:
++		    weapon = SILVER_DAGGER;
++		    break;
++#endif
+ 		case PM_MONK:
+ 		    weapon = STRANGE_OBJECT;
+ 		    armor = STRANGE_OBJECT;
+diff -aurbN nethack-3.4.3/src/mthrowu.c nethack-3.4.3-miko/src/mthrowu.c
+--- nethack-3.4.3/src/mthrowu.c	2007-09-19 09:37:59.000000000 +0900
++++ nethack-3.4.3-miko/src/mthrowu.c	2007-10-15 07:25:17.000000000 +0900
+@@ -685,6 +685,9 @@
+ 	    case PM_ROGUE:
+ 		    if (skill == P_DAGGER) multishot++;
+ 		    break;
++#ifdef MIKO
++	    case PM_MEDIUM:
++#endif
+ 	    case PM_NINJA:
+ 	    case PM_SAMURAI:
+ 		    if (otmp->otyp == YA && mwep &&
+diff -aurbN nethack-3.4.3/src/pray.c nethack-3.4.3-miko/src/pray.c
+--- nethack-3.4.3/src/pray.c	2007-09-19 09:37:59.000000000 +0900
++++ nethack-3.4.3-miko/src/pray.c	2007-10-16 10:08:09.000000000 +0900
+@@ -2305,6 +2305,124 @@
+ 	return(1);
+ }
+ 
++#ifdef MIKO
++int
++dopurify()
++{
++	register boolean confused = (Confusion != 0);
++	register struct obj *obj;
++
++	if (!Role_if(PM_MEDIUM)) {
++		You("みそぎをする方法を知らない！");
++		return(0);
++	}
++	u.uconduct.gnostic++;
++
++	if ((u.ualign.type != A_CHAOTIC &&
++		    (is_demon(youmonst.data) || is_undead(youmonst.data))) ||
++				u.ugangr > 6 /* "Die, mortal!" */) {
++		pline("なぜか，%sはあなたを無視したようだ．", u_gname());
++		aggravate();
++		exercise(A_WIS, FALSE);
++		return(0);
++	}
++
++	if (Inhell) {
++	    pline("ゲヘナに%sの力は届かない．", u_gname());
++	    aggravate();
++	    return(0);
++	}
++
++	if (!is_pool(u.ux, u.uy) && !IS_FOUNTAIN(levl[u.ux][u.uy].typ)) {
++	    pline("みそぎをするには水が必要だ．");
++	    return(0);
++	} else
++	    if (Levitation && !Lev_at_will && !u.uinwater) {
++	    You("水に届かない．");
++	    return(0);
++	}
++
++		if(confused)
++		  if (Hallucination) {
++			You("水底のルルイエを見てしまった！なんてこった！");
++			return(0); }
++		  else {
++			You("準備体操をせずに泳ごうとした！");
++			return(0); }
++		else
++		  if (Hallucination) {
++			You("髪を洗おうとしたがシャンプーを忘れてきた！");
++			return(0); }
++		  else 
++		    You("%sに祈りをささげ，澄んだ水で身を洗い清めた．．．", u_gname());
++
++		if (u.ulevel < 3) { 
++		  pline("あなたはまだ修行が足りないようだ．"); 
++		  return(0); 
++		}
++
++		if (u.uluck < 0) { 
++		  You("何者かの視線を感じ，慌てて服を着た！");
++		  aggravate();
++		  exercise(A_WIS, FALSE);
++		  return(0);
++		}
++
++		if (!rn2(6)) {
++		  pline("誰かがあなたを助けているような気がした！");
++		  exercise(A_WIS, TRUE);
++		  for (obj = invent; obj; obj = obj->nobj) { uncurse(obj); }
++		  if(Punished && !confused) unpunish();
++		  if(u.ulycn >= LOW_PM) you_unwere(TRUE);
++		  update_inventory();
++		  nomul(-rnd((MAXULEV+6) - u.ulevel));
++		  //return(1);
++		} 
++		else if (!rn2(3)) {
++		  pline("誰かがあなたを助けているような気がした．");
++		  exercise(A_WIS, TRUE);
++		  for (obj = invent; obj; obj = obj->nobj) {
++		    long wornmask;
++#ifdef GOLDOBJ
++		    if (obj->oclass == COIN_CLASS) continue;
++#endif
++		    wornmask = (obj->owornmask & ~(W_BALL|W_ART|W_ARTI));
++		    if (wornmask) {
++		      if (obj == uswapwep) {
++			if (!u.twoweap) wornmask = 0L;
++		      } else if (obj == uquiver) {
++			if (obj->oclass == WEAPON_CLASS) {
++			  if (!objects[obj->otyp].oc_merge) 
++			    wornmask = 0L;
++			} else if (obj->oclass == GEM_CLASS) {
++			  if (!uslinging()) wornmask = 0L;
++			} else {
++			  wornmask = 0L;
++			}
++		      }
++		    }
++		    if (wornmask || obj->otyp == LOADSTONE ||
++			(obj->otyp == LEASH && obj->leashmon)) uncurse(obj); }
++		  //if(Punished && !confused) unpunish();
++		  //if(u.ulycn >= LOW_PM) you_unwere(TRUE);
++		  update_inventory();
++		  nomul(-rnd((MAXULEV+6) - u.ulevel));
++		  //return(1);
++		}
++		else if (!rn2(10)) {
++		  You("何者かの視線を感じ，慌てて服を着た！");
++		  aggravate();
++		  exercise(A_WIS, FALSE);
++		}
++		else {
++		  pline("何もおこらなかった．");
++		  nomul(-5);
++		}
++
++		dryup(u.ux, u.uy, TRUE);
++}
++#endif
++
+ const char *
+ a_gname()
+ {
+diff -aurbN nethack-3.4.3/src/role.c nethack-3.4.3-miko/src/role.c
+--- nethack-3.4.3/src/role.c	2007-09-19 09:37:59.000000000 +0900
++++ nethack-3.4.3-miko/src/role.c	2007-09-19 09:20:25.000000000 +0900
+@@ -261,6 +261,52 @@
+ 	{  1, 4,  0, 1,  0, 2 },10,	/* Energy */
+ 	10, 8,-2, 0,  9, A_WIS, SPE_TURN_UNDEAD,     -4
+ },
++#ifdef MIKO
++{	{"Medium", 0}, {
++#if 1
++	"巫女" ,0}, {
++#endif
++#if 0
++	{"Pure Girl",   0},
++	{"Jinme Girl",  0},
++	{"Mist Maiden",     0},
++	{"Moon Maiden", 0},
++	{"Princess Maiden",     0},
++	{"Hanuman Maiden",0},
++	{"Ryujin Maiden",  0},
++	{"Kamiko",    0},
++	{"Eternal Maiden", 0} },
++#else
++	{"無垢な少女",  0},
++	{"御神馬の少女",        0},
++	{"朝霧の巫女",  0},
++	{"夕月の巫女",      0},
++	{"姫巫女",      0},
++	{"山神の巫女",      0},
++	{"龍神の巫女",  0},
++	{"神子",        0},
++	{"常乙女",      0} },
++#endif
++	"_Amaterasu Omikami", "Raijin", "Susanowo",
++#if 0
++	"Med", "the Old Shrine", "the cave of fox-spirits",
++#else
++	"Med", "古き神社", "妖狐の洞窟",
++#endif
++	PM_MEDIUM, NON_PM, PM_WHITE_UNICORN_FOAL,
++	PM_SHINTO_PRIEST, PM_MAIDEN, PM_NINE_TAILED_FOX,
++	PM_FOX_SPIRIT, PM_HUMAN_ZOMBIE, S_DOG, S_ZOMBIE,
++	ART_HOLY_DAGGER,
++	MH_HUMAN | ROLE_FEMALE | ROLE_LAWFUL,
++	/* Str Int Wis Dex Con Cha */
++	{   7,  7, 10,  9,  7, 16 },
++	{  15, 10, 30, 20, 20, 10 },
++	/* Init   Lower  Higher */
++	{ 13, 0,  0, 8,  1, 0 },        /* Hit points */
++	{  4, 3,  0, 2,  0, 2 },10,     /* Energy */
++	10, 9, 2, 1, 10, A_DEX, SPE_REMOVE_CURSE,   -4
++},
++#endif
+ {	{"Monk", 0}, {
+ #if 1 /*JP*/
+ 	 "武闘家", 0}, {
+diff -aurbN nethack-3.4.3/src/u_init.c nethack-3.4.3-miko/src/u_init.c
+--- nethack-3.4.3/src/u_init.c	2003-12-08 08:39:13.000000000 +0900
++++ nethack-3.4.3-miko/src/u_init.c	2007-10-15 07:31:16.000000000 +0900
+@@ -80,6 +80,22 @@
+ 	{ CARROT, 0, FOOD_CLASS, 10, 0 },
+ 	{ 0, 0, 0, 0, 0 }
+ };
++#ifdef MIKO
++/* MEDIUM */
++static struct trobj Medium[] = {
++#define MED_BOW                 1
++#define MED_TWO_ARROWS  2
++#define MED_ZERO_ARROWS 3
++	{ SILVER_DAGGER, 1, WEAPON_CLASS, 1, UNDEF_BLESS },
++	{ YUMI, 0, WEAPON_CLASS, 1, UNDEF_BLESS },
++	{ YA, 2, WEAPON_CLASS, 50, UNDEF_BLESS },
++	{ YA, 0, WEAPON_CLASS, 30, UNDEF_BLESS },
++	{ ROBE, 1, ARMOR_CLASS, 1, UNDEF_BLESS },
++	{ POT_WATER, 0, POTION_CLASS, 4, 1 },
++	{ SPE_HEALING, 0, SPBOOK_CLASS, 1, 1 },
++	{ 0, 0, 0, 0, 0 }
++};
++#endif
+ static struct trobj Monk[] = {
+ #define M_BOOK		2
+ 	{ LEATHER_GLOVES, 2, ARMOR_CLASS, 1, UNDEF_BLESS },
+@@ -339,6 +355,20 @@
+     { P_NONE, 0 }
+ };
+ 
++#ifdef MIKO
++static const struct def_skill Skill_Med[] = {
++    { P_DAGGER, P_EXPERT },		{ P_KNIFE,  P_EXPERT },
++    { P_SHORT_SWORD, P_SKILLED },	{ P_SABER, P_SKILLED },
++    { P_QUARTERSTAFF, P_BASIC },	{ P_POLEARMS, P_EXPERT },
++    { P_SPEAR, P_SKILLED },		{ P_BOW, P_EXPERT },
++    { P_CROSSBOW, P_SKILLED },		{ P_UNICORN_HORN, P_BASIC },
++    { P_HEALING_SPELL, P_EXPERT },	{ P_DIVINATION_SPELL, P_EXPERT },
++    { P_CLERIC_SPELL, P_EXPERT },
++    { P_MARTIAL_ARTS, P_EXPERT },
++    { P_NONE, 0 }
++};
++#endif
++
+ static const struct def_skill Skill_Mon[] = {
+     { P_QUARTERSTAFF, P_BASIC },    { P_SPEAR, P_BASIC },
+     { P_JAVELIN, P_BASIC },		    { P_CROSSBOW, P_BASIC },
+@@ -648,6 +678,14 @@
+ 		HJumping |= FROMOUTSIDE;
+ 		skill_init(Skill_K);
+ 		break;
++#ifdef MIKO
++	case PM_MEDIUM:
++		Medium[MED_TWO_ARROWS].trquan = rn1(10, 50);
++		Medium[MED_ZERO_ARROWS].trquan = rn1(10, 30);
++		ini_inv(Medium);
++		skill_init(Skill_Med);
++		break;
++#endif
+ 	case PM_MONK:
+ 		switch (rn2(90) / 30) {
+ 		case 0: Monk[M_BOOK].trotyp = SPE_HEALING; break;
+@@ -859,6 +897,9 @@
+      case PM_CAVEMAN:		skills = Skill_C; break;
+      case PM_HEALER:		skills = Skill_H; break;
+      case PM_KNIGHT:		skills = Skill_K; break;
++#ifdef MIKO
++     case PM_MEDIUM:		skills = Skill_Med; break;
++#endif
+      case PM_MONK:		skills = Skill_Mon; break;
+      case PM_PRIEST:		skills = Skill_P; break;
+      case PM_RANGER:		skills = Skill_Ran; break;
+diff -aurbN nethack-3.4.3/src/uhitm.c nethack-3.4.3-miko/src/uhitm.c
+--- nethack-3.4.3/src/uhitm.c	2007-09-19 09:37:59.000000000 +0900
++++ nethack-3.4.3-miko/src/uhitm.c	2007-10-15 07:26:57.000000000 +0900
+@@ -738,6 +738,11 @@
+ 			    if (Role_if(PM_SAMURAI) &&
+ 				obj->otyp == YA && uwep->otyp == YUMI)
+ 				tmp++;
++#ifdef MIKO
++			    else if (Role_if(PM_MEDIUM) &&
++				obj->otyp == YA && uwep->otyp == YUMI)
++				tmp++;
++#endif
+ 			    else if (Race_if(PM_ELF) &&
+ 				     obj->otyp == ELVEN_ARROW &&
+ 				     uwep->otyp == ELVEN_BOW)
+diff -aurbN nethack-3.4.3/sys/unix/Makefile.dat nethack-3.4.3-miko/sys/unix/Makefile.dat
+--- nethack-3.4.3/sys/unix/Makefile.dat	2007-09-19 09:38:00.000000000 +0900
++++ nethack-3.4.3-miko/sys/unix/Makefile.dat	2007-09-19 07:47:34.000000000 +0900
+@@ -119,7 +119,7 @@
+ 	touch spec_levs
+ 
+ quest_levs: ../util/lev_comp \
+-	Arch.des Barb.des Caveman.des Healer.des Knight.des Monk.des \
++	Arch.des Barb.des Caveman.des Healer.des Knight.des Medium.des Monk.des \
+ 	Priest.des Ranger.des Rogue.des Samurai.des Tourist.des Valkyrie.des \
+ 	Wizard.des
+ 	../util/lev_comp Arch.des
+@@ -127,6 +127,7 @@
+ 	../util/lev_comp Caveman.des
+ 	../util/lev_comp Healer.des
+ 	../util/lev_comp Knight.des
++	../util/lev_comp Medium.des
+ 	../util/lev_comp Monk.des
+ 	../util/lev_comp Priest.des
+ 	../util/lev_comp Ranger.des
+diff -aurbN nethack-3.4.3/util/makedefs.c nethack-3.4.3-miko/util/makedefs.c
+--- nethack-3.4.3/util/makedefs.c	2007-09-19 09:38:00.000000000 +0900
++++ nethack-3.4.3-miko/util/makedefs.c	2007-09-19 07:46:23.000000000 +0900
+@@ -751,6 +751,9 @@
+ #ifdef EXP_ON_BOTL
+ 		"experience points on status line",
+ #endif
++#ifdef MIKO
++		"Japanese shrine medium",
++#endif
+ #ifdef MFLOPPY
+ 		"floppy drive support",
+ #endif

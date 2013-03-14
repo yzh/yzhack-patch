@@ -1,0 +1,293 @@
+diff -aurbN nethack-3.4.3/dat/jtrnsmon.dat jnh343-10-hlf/dat/jtrnsmon.dat
+--- nethack-3.4.3/dat/jtrnsmon.dat	2008-05-26 17:24:52.000000000 +0900
++++ jnh343-10-hlf/dat/jtrnsmon.dat	2008-05-26 17:23:35.000000000 +0900
+@@ -440,6 +440,7 @@
+ Grey-elf:		灰色エルフ:
+ elf-lord:		エルフの貴族:
+ Elvenking:		エルフの王:
++half-elf:		ハーフエルフ:
+ doppelganger:		ドッペルゲンガー:
+ nurse:			看護婦:
+ shopkeeper:		店主:
+@@ -539,6 +540,7 @@
+ caveman:		洞窟人:
+ cavewoman:		洞窟人:
+ elf:			エルフ:
++Half-elf:		ハーフエルフ:
+ healer:			薬師:
+ knight:			騎士:
+ monk:			武闘家:
+diff -aurbN nethack-3.4.3/include/config.h jnh343-10-hlf/include/config.h
+--- nethack-3.4.3/include/config.h	2008-05-26 17:24:52.000000000 +0900
++++ jnh343-10-hlf/include/config.h	2008-05-26 16:53:23.000000000 +0900
+@@ -359,6 +359,8 @@
+ /*# define USE_MAKESINGULAR */	/* Enable singularize */
+ #endif
+ 
++#define HALFELF		/* add new race half-elf */
++
+ /*
+  * Section 5:  EXPERIMENTAL STUFF
+  *
+diff -aurbN nethack-3.4.3/include/mondata.h jnh343-10-hlf/include/mondata.h
+--- nethack-3.4.3/include/mondata.h	2003-12-08 08:39:13.000000000 +0900
++++ jnh343-10-hlf/include/mondata.h	2008-05-26 16:56:59.000000000 +0900
+@@ -82,6 +82,9 @@
+ #define is_gnome(ptr)		(((ptr)->mflags2 & M2_GNOME) != 0L)
+ #define is_orc(ptr)		(((ptr)->mflags2 & M2_ORC) != 0L)
+ #define is_human(ptr)		(((ptr)->mflags2 & M2_HUMAN) != 0L)
++#ifdef HALFELF
++#define is_halfelf(ptr)		(((ptr)->mflags2 & M2_HALFELF) != 0L)
++#endif
+ #define your_race(ptr)		(((ptr)->mflags2 & urace.selfmask) != 0L)
+ #define is_bat(ptr)		((ptr) == &mons[PM_BAT] || \
+ 				 (ptr) == &mons[PM_GIANT_BAT] || \
+diff -aurbN nethack-3.4.3/include/monflag.h jnh343-10-hlf/include/monflag.h
+--- nethack-3.4.3/include/monflag.h	2003-12-08 08:39:13.000000000 +0900
++++ jnh343-10-hlf/include/monflag.h	2008-05-26 17:51:41.000000000 +0900
+@@ -117,7 +117,12 @@
+ #define M2_DWARF	0x00000020L	/* is a dwarf */
+ #define M2_GNOME	0x00000040L	/* is a gnome */
+ #define M2_ORC		0x00000080L	/* is an orc */
++#ifdef HALFELF
++#define M2_HALFELF	0x00000100L	/* is an half-elf */
++#define M2_DEMON	0x00004000L	/* is a demon */
++#else
+ #define M2_DEMON	0x00000100L	/* is a demon */
++#endif
+ #define M2_MERC		0x00000200L	/* is a guard or soldier */
+ #define M2_LORD		0x00000400L	/* is a lord to its kind */
+ #define M2_PRINCE	0x00000800L	/* is an overlord to its kind */
+@@ -176,7 +181,9 @@
+ #define MH_DWARF	M2_DWARF
+ #define MH_GNOME	M2_GNOME
+ #define MH_ORC		M2_ORC
+-
++#ifdef HALFELF
++#define MH_HALFELF	M2_HALFELF
++#endif
+ 
+ /* for mons[].geno (constant during game) */
+ #define G_UNIQ		0x1000		/* generated only once */
+diff -aurbN nethack-3.4.3/src/attrib.c jnh343-10-hlf/src/attrib.c
+--- nethack-3.4.3/src/attrib.c	2008-05-26 17:24:53.000000000 +0900
++++ jnh343-10-hlf/src/attrib.c	2008-05-26 17:00:46.000000000 +0900
+@@ -185,6 +185,14 @@
+ 	elf_abil[] = { {	4, &(HSleep_resistance), "目が覚めた", "眠くなった" },
+ 		     {	 0, 0, 0, 0 } },
+ 
++#ifdef HALFELF
++	/*JP
++	halfelf_abil[] = { {    7, &(HSleep_resistance), "awake", "tired" },
++	*/
++	halfelf_abil[] = { {    7, &(HSleep_resistance), "目が覚めた", "眠くなった" },
++                     {   0, 0, 0, 0 } },
++#endif
++
+ 	orc_abil[] = { {	1, &(HPoison_resistance), "", "" },
+ 		     {	 0, 0, 0, 0 } };
+ 
+@@ -688,6 +696,9 @@
+ 
+ 	switch (Race_switch) {
+ 	case PM_ELF:            rabil = elf_abil;	break;
++#ifdef HALFELF
++	case PM_HALF_ELF:	rabil = halfelf_abil;	break;
++#endif
+ 	case PM_ORC:            rabil = orc_abil;	break;
+ 	case PM_HUMAN:
+ 	case PM_DWARF:
+diff -aurbN nethack-3.4.3/src/monst.c jnh343-10-hlf/src/monst.c
+--- nethack-3.4.3/src/monst.c	2003-12-08 08:39:13.000000000 +0900
++++ jnh343-10-hlf/src/monst.c	2008-05-26 17:02:30.000000000 +0900
+@@ -2351,6 +2351,15 @@
+ 	M1_HUMANOID|M1_OMNIVORE|M1_SEE_INVIS,
+ 	M2_ELF|M2_STRONG|M2_PRINCE|M2_MALE|M2_COLLECT,
+ 	M3_INFRAVISIBLE|M3_INFRAVISION, HI_LORD),
++#ifdef HALFELF
++    MON("half-elf", S_HUMAN,
++        LVL(4, 12, 10, 10, -5), (G_GENO|G_SGROUP|2),
++        A(ATTK(AT_WEAP, AD_PHYS, 2, 4),
++          NO_ATTK, NO_ATTK, NO_ATTK, NO_ATTK, NO_ATTK),
++        SIZ(WT_ELF, 350, 0, MS_HUMANOID, MZ_HUMAN), 0, 0,
++        M1_HUMANOID|M1_OMNIVORE|M1_SEE_INVIS,
++        M2_HALFELF|M2_COLLECT, M3_INFRAVISIBLE|M3_INFRAVISION, CLR_GREEN),
++#endif
+     MON("doppelganger", S_HUMAN,
+ 	LVL(9, 12, 5, 20, 0), (G_GENO|1),
+ 	A(ATTK(AT_WEAP, AD_PHYS, 1, 12),
+diff -aurbN nethack-3.4.3/src/role.c jnh343-10-hlf/src/role.c
+--- nethack-3.4.3/src/role.c	2008-05-26 17:24:53.000000000 +0900
++++ jnh343-10-hlf/src/role.c	2008-05-26 17:54:40.000000000 +0900
+@@ -73,7 +73,11 @@
+ 	PM_LORD_CARNARVON, PM_STUDENT, PM_MINION_OF_HUHETOTL,
+ 	NON_PM, PM_HUMAN_MUMMY, S_SNAKE, S_MUMMY,
+ 	ART_ORB_OF_DETECTION,
++#ifdef HALFELF
++	MH_HUMAN|MH_DWARF|MH_GNOME|MH_HALFELF | ROLE_MALE|ROLE_FEMALE |
++#else
+ 	MH_HUMAN|MH_DWARF|MH_GNOME | ROLE_MALE|ROLE_FEMALE |
++#endif
+ 	  ROLE_LAWFUL|ROLE_NEUTRAL,
+ 	/* Str Int Wis Dex Con Cha */
+ 	{   7, 10, 10,  7,  7,  7 },
+@@ -118,7 +122,11 @@
+ 	PM_PELIAS, PM_CHIEFTAIN, PM_THOTH_AMON,
+ 	PM_OGRE, PM_TROLL, S_OGRE, S_TROLL,
+ 	ART_HEART_OF_AHRIMAN,
++#ifdef HALFELF
++	MH_HUMAN|MH_ORC|MH_HALFELF | ROLE_MALE|ROLE_FEMALE |
++#else
+ 	MH_HUMAN|MH_ORC | ROLE_MALE|ROLE_FEMALE |
++#endif
+ 	  ROLE_NEUTRAL|ROLE_CHAOTIC,
+ 	/* Str Int Wis Dex Con Cha */
+ 	{  16,  7,  7, 15, 16,  6 },
+@@ -208,7 +216,11 @@
+ 	PM_HIPPOCRATES, PM_ATTENDANT, PM_CYCLOPS,
+ 	PM_GIANT_RAT, PM_SNAKE, S_RODENT, S_YETI,
+ 	ART_STAFF_OF_AESCULAPIUS,
++#ifdef HALFELF
++	MH_HUMAN|MH_GNOME|MH_HALFELF | ROLE_MALE|ROLE_FEMALE | ROLE_NEUTRAL,
++#else
+ 	MH_HUMAN|MH_GNOME | ROLE_MALE|ROLE_FEMALE | ROLE_NEUTRAL,
++#endif
+ 	/* Str Int Wis Dex Con Cha */
+ 	{   7,  7, 13,  7, 11, 16 },
+ 	{  15, 20, 20, 15, 25, 5 },
+@@ -297,7 +309,11 @@
+ 	PM_GRAND_MASTER, PM_ABBOT, PM_MASTER_KAEN,
+ 	PM_EARTH_ELEMENTAL, PM_XORN, S_ELEMENTAL, S_XORN,
+ 	ART_EYES_OF_THE_OVERWORLD,
++#ifdef HALFELF
++	MH_HUMAN|MH_HALFELF | ROLE_MALE|ROLE_FEMALE |
++#else
+ 	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
++#endif
+ 	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+ 	/* Str Int Wis Dex Con Cha */
+ 	{  10,  7,  8,  8,  7,  7 },
+@@ -342,7 +358,11 @@
+ 	PM_ARCH_PRIEST, PM_ACOLYTE, PM_NALZOK,
+ 	PM_HUMAN_ZOMBIE, PM_WRAITH, S_ZOMBIE, S_WRAITH,
+ 	ART_MITRE_OF_HOLINESS,
++#ifdef HALFELF
++	MH_HUMAN|MH_ELF|MH_HALFELF | ROLE_MALE|ROLE_FEMALE |
++#else
+ 	MH_HUMAN|MH_ELF | ROLE_MALE|ROLE_FEMALE |
++#endif
+ 	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+ 	/* Str Int Wis Dex Con Cha */
+ 	{   7,  7, 10,  7,  7,  7 },
+@@ -389,7 +409,11 @@
+ 	PM_MASTER_OF_THIEVES, PM_THUG, PM_MASTER_ASSASSIN,
+ 	PM_LEPRECHAUN, PM_GUARDIAN_NAGA, S_NYMPH, S_NAGA,
+ 	ART_MASTER_KEY_OF_THIEVERY,
++#ifdef HALFELF
++	MH_HUMAN|MH_ORC|MH_HALFELF | ROLE_MALE|ROLE_FEMALE |
++#else
+ 	MH_HUMAN|MH_ORC | ROLE_MALE|ROLE_FEMALE |
++#endif
+ 	  ROLE_CHAOTIC,
+ 	/* Str Int Wis Dex Con Cha */
+ 	{   7,  7,  7, 10,  7,  6 },
+@@ -448,7 +472,11 @@
+ 	PM_ORION, PM_HUNTER, PM_SCORPIUS,
+ 	PM_FOREST_CENTAUR, PM_SCORPION, S_CENTAUR, S_SPIDER,
+ 	ART_LONGBOW_OF_DIANA,
++#ifdef HALFELF
++	MH_HUMAN|MH_ELF|MH_GNOME|MH_ORC|MH_HALFELF | ROLE_MALE|ROLE_FEMALE |
++#else
+ 	MH_HUMAN|MH_ELF|MH_GNOME|MH_ORC | ROLE_MALE|ROLE_FEMALE |
++#endif
+ 	  ROLE_NEUTRAL|ROLE_CHAOTIC,
+ 	/* Str Int Wis Dex Con Cha */
+ 	{  13, 13, 13,  9, 13,  7 },
+@@ -538,7 +566,11 @@
+ 	PM_TWOFLOWER, PM_GUIDE, PM_MASTER_OF_THIEVES,
+ 	PM_GIANT_SPIDER, PM_FOREST_CENTAUR, S_SPIDER, S_CENTAUR,
+ 	ART_YENDORIAN_EXPRESS_CARD,
++#ifdef HALFELF
++	MH_HUMAN|MH_HALFELF | ROLE_MALE|ROLE_FEMALE | ROLE_NEUTRAL,
++#else
+ 	MH_HUMAN | ROLE_MALE|ROLE_FEMALE | ROLE_NEUTRAL,
++#endif
+ 	/* Str Int Wis Dex Con Cha */
+ 	{   7, 10,  6,  7,  7, 10 },
+ 	{  15, 10, 10, 15, 30, 20 },
+@@ -583,7 +615,11 @@
+ 	PM_NORN, PM_WARRIOR, PM_LORD_SURTUR,
+ 	PM_FIRE_ANT, PM_FIRE_GIANT, S_ANT, S_GIANT,
+ 	ART_ORB_OF_FATE,
++#ifdef HALFELF
++	MH_HUMAN|MH_DWARF|MH_HALFELF | ROLE_FEMALE | ROLE_LAWFUL|ROLE_NEUTRAL,
++#else
+ 	MH_HUMAN|MH_DWARF | ROLE_FEMALE | ROLE_LAWFUL|ROLE_NEUTRAL,
++#endif
+ 	/* Str Int Wis Dex Con Cha */
+ 	{  10,  7,  7,  7, 10,  7 },
+ 	{  30,  6,  7, 20, 30,  7 },
+@@ -627,7 +663,11 @@
+ 	PM_NEFERET_THE_GREEN, PM_APPRENTICE, PM_DARK_ONE,
+ 	PM_VAMPIRE_BAT, PM_XORN, S_BAT, S_WRAITH,
+ 	ART_EYE_OF_THE_AETHIOPICA,
++#ifdef HALFELF
++	MH_HUMAN|MH_ELF|MH_GNOME|MH_ORC|MH_HALFELF | ROLE_MALE|ROLE_FEMALE |
++#else
+ 	MH_HUMAN|MH_ELF|MH_GNOME|MH_ORC | ROLE_MALE|ROLE_FEMALE |
++#endif
+ 	  ROLE_NEUTRAL|ROLE_CHAOTIC,
+ 	/* Str Int Wis Dex Con Cha */
+ 	{   7, 10,  7,  7,  7,  7 },
+@@ -705,6 +745,23 @@
+ 	{  1, 0,  0, 1,  1, 0 },	/* Hit points */
+ 	{  2, 0,  3, 0,  3, 0 }		/* Energy */
+ },
++#ifdef HALFELF
++	/*JP
++{       "Half-elf", "half-elven", "half-elvenkind", "Hlf",
++	*/
++{       "Half-elf", "ハーフエルフ", "Half-elven", "Half-elvenkind", "Hlf",
++	{0, 0},
++	PM_HALF_ELF, NON_PM, PM_ELF_MUMMY, PM_ELF_ZOMBIE,
++	MH_HALFELF | ROLE_MALE|ROLE_FEMALE | ROLE_NEUTRAL|ROLE_CHAOTIC,
++	MH_HALFELF, MH_HALFELF, MH_HUMAN|MH_ELF|MH_ORC,
++	/*    Str    Int Wis Dex Con Cha */
++	{      3,     3,  3,  3,  3,  3 },
++	{ STR18(50), 18, 19, 18, 17, 18 },
++	/* Init   Lower  Higher */
++	{  1, 0,  0, 1,  1, 0 },        /* Hit points */
++	{  1, 0,  2, 0,  2, 0 }         /* Energy */
++	},
++#endif
+ /*JP
+ {	"dwarf", "dwarven", "dwarvenkind", "Dwa",
+ */
+diff -aurbN nethack-3.4.3/src/u_init.c jnh343-10-hlf/src/u_init.c
+--- nethack-3.4.3/src/u_init.c	2003-12-08 08:39:13.000000000 +0900
++++ jnh343-10-hlf/src/u_init.c	2008-05-26 17:21:47.000000000 +0900
+@@ -232,6 +232,14 @@
+  /* { PM_ELF,	SMALL_SHIELD,		ELVEN_SHIELD	      }, */
+     { PM_ELF,	CLOAK_OF_DISPLACEMENT,	ELVEN_CLOAK	      },
+     { PM_ELF,	CRAM_RATION,		LEMBAS_WAFER	      },
++#ifdef HALFELF
++    { PM_HALF_ELF,	DAGGER,		ELVEN_DAGGER          },
++    { PM_HALF_ELF,	SPEAR,		ELVEN_SPEAR           },
++    { PM_HALF_ELF,	SHORT_SWORD,	ELVEN_SHORT_SWORD     },
++    { PM_HALF_ELF,	BOW,		ELVEN_BOW             },
++    { PM_HALF_ELF,	ARROW,		ELVEN_ARROW           },
++    { PM_HALF_ELF,	HELMET,		ELVEN_LEATHER_HELM    },
++#endif
+     { PM_ORC,	DAGGER,			ORCISH_DAGGER	      },
+     { PM_ORC,	SPEAR,			ORCISH_SPEAR	      },
+     { PM_ORC,	SHORT_SWORD,		ORCISH_SHORT_SWORD    },
+@@ -742,6 +750,9 @@
+ 	    break;
+ 
+ 	case PM_ELF:
++#ifdef HALFELF
++	case PM_HALF_ELF:
++#endif
+ 	    /*
+ 	     * Elves are people of music and song, or they are warriors.
+ 	     * Non-warriors get an instrument.  We use a kludge to

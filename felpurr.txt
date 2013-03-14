@@ -1,0 +1,373 @@
+diff -aurbN nethack-3.4.3/dat/jtrnsmon.dat nethack-3.4.3-fel/dat/jtrnsmon.dat
+--- nethack-3.4.3/dat/jtrnsmon.dat	2011-11-10 20:17:14.000000000 +0900
++++ nethack-3.4.3-fel/dat/jtrnsmon.dat	2011-11-10 20:55:08.000000000 +0900
+@@ -80,6 +80,7 @@
+ dwarf king:		ドワーフの王:
+ mind flayer:		マインドフレア:
+ master mind flayer:	マスターマインドフレア:
++felpurr:    		フェルプール:
+ #
+ #	imps & other minor demons/devils
+ #
+@@ -320,6 +321,7 @@
+ dwarf mummy:		ドワーフのミイラ:
+ elf mummy:		エルフのミイラ:
+ human mummy:		人間のミイラ:
++felpurr mummy:		フェルプールのミイラ:
+ ettin mummy:		エティンのミイラ:
+ giant mummy:		巨人のミイラ:
+ #
+@@ -410,6 +412,7 @@
+ dwarf zombie:		ドワーフのゾンビ:
+ elf zombie:		エルフのゾンビ:
+ human zombie:		人間のゾンビ:
++felpurr zombie:		フェルプールのゾンビ:
+ 
+ ettin zombie:		エティンのゾンビ:
+ giant zombie:		巨人のゾンビ:
+@@ -539,6 +542,7 @@
+ caveman:		洞窟人:
+ cavewoman:		洞窟人:
+ elf:			エルフ:
++felpurr:		フェルプール:
+ healer:			薬師:
+ knight:			騎士:
+ monk:			武闘家:
+diff -aurbN nethack-3.4.3/include/config.h nethack-3.4.3-fel/include/config.h
+--- nethack-3.4.3/include/config.h	2011-11-10 20:17:14.000000000 +0900
++++ nethack-3.4.3-fel/include/config.h	2011-11-10 20:56:14.000000000 +0900
+@@ -359,6 +359,8 @@
+ /*# define USE_MAKESINGULAR */	/* Enable singularize */
+ #endif
+ 
++#define FELPURR  /* add new race felpurr */
++
+ /*
+  * Section 5:  EXPERIMENTAL STUFF
+  *
+diff -aurbN nethack-3.4.3/include/mondata.h nethack-3.4.3-fel/include/mondata.h
+--- nethack-3.4.3/include/mondata.h	2003-12-08 08:39:13.000000000 +0900
++++ nethack-3.4.3-fel/include/mondata.h	2011-11-10 20:19:50.000000000 +0900
+@@ -82,6 +82,9 @@
+ #define is_gnome(ptr)		(((ptr)->mflags2 & M2_GNOME) != 0L)
+ #define is_orc(ptr)		(((ptr)->mflags2 & M2_ORC) != 0L)
+ #define is_human(ptr)		(((ptr)->mflags2 & M2_HUMAN) != 0L)
++#ifdef FELPURR
++#define is_felpurr(ptr)	(((ptr)->mflags2 & M2_FELPURR) !=0L)
++#endif
+ #define your_race(ptr)		(((ptr)->mflags2 & urace.selfmask) != 0L)
+ #define is_bat(ptr)		((ptr) == &mons[PM_BAT] || \
+ 				 (ptr) == &mons[PM_GIANT_BAT] || \
+diff -aurbN nethack-3.4.3/include/monflag.h nethack-3.4.3-fel/include/monflag.h
+--- nethack-3.4.3/include/monflag.h	2003-12-08 08:39:13.000000000 +0900
++++ nethack-3.4.3-fel/include/monflag.h	2011-11-10 21:00:37.000000000 +0900
+@@ -117,7 +117,12 @@
+ #define M2_DWARF	0x00000020L	/* is a dwarf */
+ #define M2_GNOME	0x00000040L	/* is a gnome */
+ #define M2_ORC		0x00000080L	/* is an orc */
++#ifdef FELPURR
++#define M2_FELPURR	0x00000100L	/* is a felpurr */
++#define M2_DEMON	0x00004000L	/* is a demon */
++#else
+ #define M2_DEMON	0x00000100L	/* is a demon */
++#endif
+ #define M2_MERC		0x00000200L	/* is a guard or soldier */
+ #define M2_LORD		0x00000400L	/* is a lord to its kind */
+ #define M2_PRINCE	0x00000800L	/* is an overlord to its kind */
+@@ -176,6 +181,9 @@
+ #define MH_DWARF	M2_DWARF
+ #define MH_GNOME	M2_GNOME
+ #define MH_ORC		M2_ORC
++#ifdef FELPURR
++#define MH_FELPURR	M2_FELPURR
++#endif
+ 
+ 
+ /* for mons[].geno (constant during game) */
+diff -aurbN nethack-3.4.3/src/attrib.c nethack-3.4.3-fel/src/attrib.c
+--- nethack-3.4.3/src/attrib.c	2011-11-10 20:17:14.000000000 +0900
++++ nethack-3.4.3-fel/src/attrib.c	2011-11-10 20:22:36.000000000 +0900
+@@ -185,6 +185,14 @@
+ 	elf_abil[] = { {	4, &(HSleep_resistance), "目が覚めた", "眠くなった" },
+ 		     {	 0, 0, 0, 0 } },
+ 
++#ifdef FELPURR
++	felpurr_abil[] = { {	1, &(HStealth), "人目を盗む力を得た", "人目を盗む力を失った" },
++			   {	1, &(HFast), "素早さを得た", "遅くなった" },
++			   {	1, &(HSearching), "知覚力を得た", "知覚力を失った" },
++			   {	4, &(HSee_invisible), "", "" },
++		     {	0, 0, 0, 0 } },
++#endif
++
+ 	orc_abil[] = { {	1, &(HPoison_resistance), "", "" },
+ 		     {	 0, 0, 0, 0 } };
+ 
+@@ -689,6 +697,9 @@
+ 	switch (Race_switch) {
+ 	case PM_ELF:            rabil = elf_abil;	break;
+ 	case PM_ORC:            rabil = orc_abil;	break;
++#ifdef FELPURR
++	case PM_FELPURR:	rabil = felpurr_abil;	break;
++#endif
+ 	case PM_HUMAN:
+ 	case PM_DWARF:
+ 	case PM_GNOME:
+diff -aurbN nethack-3.4.3/src/dog.c nethack-3.4.3-fel/src/dog.c
+--- nethack-3.4.3/src/dog.c	2011-11-10 20:17:14.000000000 +0900
++++ nethack-3.4.3-fel/src/dog.c	2011-11-10 20:24:10.000000000 +0900
+@@ -45,6 +45,10 @@
+ {
+ 	if (urole.petnum != NON_PM)
+ 	    return (urole.petnum);
++#ifdef FELPURR
++	else if Race_if(PM_FELPURR)
++	    return (PM_KITTEN);
++#endif
+ 	else if (preferred_pet == 'c')
+ 	    return (PM_KITTEN);
+ 	else if (preferred_pet == 'd')
+diff -aurbN nethack-3.4.3/src/makemon.c nethack-3.4.3-fel/src/makemon.c
+--- nethack-3.4.3/src/makemon.c	2011-11-10 20:17:14.000000000 +0900
++++ nethack-3.4.3-fel/src/makemon.c	2011-11-10 20:24:59.000000000 +0900
+@@ -1001,6 +1001,15 @@
+ 			if (Inhell && is_bat(ptr))
+ 			    mon_adjust_speed(mtmp, 2, (struct obj *)0);
+ 			break;
++#ifdef FELPURR
++		/* cats always friendly and dogs always hostile to felpurr */
++		case S_FELINE:
++			if (Race_if(PM_FELPURR)) mtmp->mpeaceful = TRUE;
++			break;
++		case S_DOG:
++			if (Race_if(PM_FELPURR)) mtmp->mpeaceful = FALSE;
++			break;
++#endif
+ 	}
+ 	if ((ct = emits_light(mtmp->data)) > 0)
+ 		new_light_source(mtmp->mx, mtmp->my, ct,
+diff -aurbN nethack-3.4.3/src/monst.c nethack-3.4.3-fel/src/monst.c
+--- nethack-3.4.3/src/monst.c	2003-12-08 08:39:13.000000000 +0900
++++ nethack-3.4.3-fel/src/monst.c	2011-11-10 20:25:56.000000000 +0900
+@@ -492,6 +492,16 @@
+ 	M1_HUMANOID|M1_FLY|M1_SEE_INVIS|M1_OMNIVORE,
+ 	M2_HOSTILE|M2_NASTY|M2_GREEDY|M2_JEWELS|M2_COLLECT,
+ 	M3_INFRAVISIBLE|M3_INFRAVISION, CLR_MAGENTA),
++#ifdef FELPURR
++    MON("felpurr", S_HUMANOID,
++	LVL(2, 6, 10, 10, 4), (G_GENO|3),
++	A(ATTK(AT_WEAP, AD_PHYS, 1, 8),
++	  NO_ATTK, NO_ATTK, NO_ATTK, NO_ATTK, NO_ATTK),
++	SIZ(900, 300, 0, MS_HUMANOID, MZ_HUMAN), 0, 0,
++	M1_HUMANOID|M1_OMNIVORE,
++	M2_FELPURR|M2_JEWELS|M2_COLLECT,
++	M3_INFRAVISIBLE|M3_INFRAVISION, CLR_CYAN),
++#endif
+ /*
+  * imps & other minor demons/devils
+  */
+@@ -1725,6 +1735,16 @@
+ 	M1_BREATHLESS|M1_MINDLESS|M1_HUMANOID|M1_POIS,
+ 	M2_UNDEAD|M2_HOSTILE|M2_GIANT|M2_STRONG|M2_JEWELS, M3_INFRAVISION,
+ 	CLR_CYAN),
++#ifdef FELPURR
++    MON("felpurr mummy", S_MUMMY,
++	LVL(5, 10, 5, 20, -4), (G_GENO|G_NOCORPSE|1),
++	A(ATTK(AT_CLAW, AD_PHYS, 1, 6),
++	  NO_ATTK, NO_ATTK, NO_ATTK, NO_ATTK, NO_ATTK),
++	SIZ(900, 150, 0, MS_SILENT, MZ_HUMAN), MR_COLD|MR_SLEEP|MR_POISON, 0,
++	M1_BREATHLESS|M1_MINDLESS|M1_HUMANOID|M1_POIS,
++	M2_UNDEAD|M2_HOSTILE|M2_FELPURR|M2_GREEDY|M2_JEWELS, M3_INFRAVISION,
++	CLR_CYAN),
++#endif
+ /*
+  * Nagas
+  */
+@@ -2171,6 +2191,15 @@
+ 	M1_BREATHLESS|M1_MINDLESS|M1_HUMANOID,
+ 	M2_UNDEAD|M2_STALK|M2_HOSTILE|M2_GIANT|M2_STRONG, M3_INFRAVISION,
+ 	CLR_CYAN),
++#ifdef FELPURR
++    MON("felpurr zombie", S_ZOMBIE,
++	LVL(2, 6, 9, 0, -3), (G_GENO|G_SGROUP|G_NOCORPSE|1),
++	A(ATTK(AT_CLAW, AD_PHYS, 1, 6),
++	  NO_ATTK, NO_ATTK, NO_ATTK, NO_ATTK, NO_ATTK),
++	SIZ(900, 150, 0, MS_SILENT, MZ_HUMAN), MR_COLD|MR_SLEEP|MR_POISON, 0,
++	M1_BREATHLESS|M1_MINDLESS|M1_HUMANOID|M1_POIS,
++	M2_UNDEAD|M2_STALK|M2_HOSTILE|M2_FELPURR, M3_INFRAVISION, CLR_CYAN),
++#endif
+     MON("ghoul", S_ZOMBIE,
+ 	LVL(3, 6, 10, 0, -2), (G_GENO|G_NOCORPSE|1),
+ 	A(ATTK(AT_CLAW, AD_PLYS, 1, 2), ATTK(AT_CLAW, AD_PHYS, 1, 3),
+diff -aurbN nethack-3.4.3/src/potion.c nethack-3.4.3-fel/src/potion.c
+--- nethack-3.4.3/src/potion.c	2011-11-10 20:17:14.000000000 +0900
++++ nethack-3.4.3-fel/src/potion.c	2011-11-10 20:26:36.000000000 +0900
+@@ -839,6 +839,12 @@
+ 		    You("yawn.");
+ */
+ 		    You("あくびをした．");
++#ifdef FELPURR
++		else if Race_if(PM_FELPURR) {
++		    pline("突然眠ってしまった！");
++		    fall_asleep(-rn1(10, 35 - 12*bcsign(otmp)), TRUE);
++		    }
++#endif
+ 		else {
+ /*JP
+ 		    You("suddenly fall asleep!");
+diff -aurbN nethack-3.4.3/src/role.c nethack-3.4.3-fel/src/role.c
+--- nethack-3.4.3/src/role.c	2011-11-10 20:17:14.000000000 +0900
++++ nethack-3.4.3-fel/src/role.c	2011-11-10 20:29:50.000000000 +0900
+@@ -118,7 +118,11 @@
+ 	PM_PELIAS, PM_CHIEFTAIN, PM_THOTH_AMON,
+ 	PM_OGRE, PM_TROLL, S_OGRE, S_TROLL,
+ 	ART_HEART_OF_AHRIMAN,
+-	MH_HUMAN|MH_ORC | ROLE_MALE|ROLE_FEMALE |
++#ifdef FELPURR
++	MH_HUMAN|MH_ORC|MH_FELPURR | ROLE_MALE|ROLE_FEMALE |
++#else
++	MH_HUMAN|MH_ORC| ROLE_MALE|ROLE_FEMALE |
++#endif
+ 	  ROLE_NEUTRAL|ROLE_CHAOTIC,
+ 	/* Str Int Wis Dex Con Cha */
+ 	{  16,  7,  7, 15, 16,  6 },
+@@ -342,7 +346,11 @@
+ 	PM_ARCH_PRIEST, PM_ACOLYTE, PM_NALZOK,
+ 	PM_HUMAN_ZOMBIE, PM_WRAITH, S_ZOMBIE, S_WRAITH,
+ 	ART_MITRE_OF_HOLINESS,
+-	MH_HUMAN|MH_ELF | ROLE_MALE|ROLE_FEMALE |
++#ifdef FELPURR
++	MH_HUMAN|MH_ELF|MH_DWARF|MH_FELPURR | ROLE_MALE|ROLE_FEMALE |
++#else
++	MH_HUMAN|MH_ELF|MH_DWARF | ROLE_MALE|ROLE_FEMALE |
++#endif
+ 	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+ 	/* Str Int Wis Dex Con Cha */
+ 	{   7,  7, 10,  7,  7,  7 },
+@@ -389,7 +397,11 @@
+ 	PM_MASTER_OF_THIEVES, PM_THUG, PM_MASTER_ASSASSIN,
+ 	PM_LEPRECHAUN, PM_GUARDIAN_NAGA, S_NYMPH, S_NAGA,
+ 	ART_MASTER_KEY_OF_THIEVERY,
++#ifdef FELPURR
++	MH_HUMAN|MH_ORC|MH_FELPURR | ROLE_MALE|ROLE_FEMALE |
++#else
+ 	MH_HUMAN|MH_ORC | ROLE_MALE|ROLE_FEMALE |
++#endif
+ 	  ROLE_CHAOTIC,
+ 	/* Str Int Wis Dex Con Cha */
+ 	{   7,  7,  7, 10,  7,  6 },
+@@ -448,7 +460,11 @@
+ 	PM_ORION, PM_HUNTER, PM_SCORPIUS,
+ 	PM_FOREST_CENTAUR, PM_SCORPION, S_CENTAUR, S_SPIDER,
+ 	ART_LONGBOW_OF_DIANA,
++#ifdef FELPURR
++	MH_HUMAN|MH_ELF|MH_GNOME|MH_ORC|MH_FELPURR | ROLE_MALE|ROLE_FEMALE |
++#else
+ 	MH_HUMAN|MH_ELF|MH_GNOME|MH_ORC | ROLE_MALE|ROLE_FEMALE |
++#endif
+ 	  ROLE_NEUTRAL|ROLE_CHAOTIC,
+ 	/* Str Int Wis Dex Con Cha */
+ 	{  13, 13, 13,  9, 13,  7 },
+@@ -627,7 +643,11 @@
+ 	PM_NEFERET_THE_GREEN, PM_APPRENTICE, PM_DARK_ONE,
+ 	PM_VAMPIRE_BAT, PM_XORN, S_BAT, S_WRAITH,
+ 	ART_EYE_OF_THE_AETHIOPICA,
++#ifdef FELPURR
++	MH_HUMAN|MH_ELF|MH_GNOME|MH_ORC|MH_FELPURR | ROLE_MALE|ROLE_FEMALE |
++#else
+ 	MH_HUMAN|MH_ELF|MH_GNOME|MH_ORC | ROLE_MALE|ROLE_FEMALE |
++#endif
+ 	  ROLE_NEUTRAL|ROLE_CHAOTIC,
+ 	/* Str Int Wis Dex Con Cha */
+ 	{   7, 10,  7,  7,  7,  7 },
+@@ -750,6 +770,23 @@
+ 	{  1, 0,  0, 1,  0, 0 },	/* Hit points */
+ 	{  1, 0,  1, 0,  1, 0 }		/* Energy */
+ },
++#ifdef FELPURR
++/*JP
++{	"felpurr", "felpurr", "felpurr", "Fel",
++*/
++{	"felpurr", "フェルプール", "felpurr", "felpurr", "Fel",
++	{0, 0},
++	PM_FELPURR, NON_PM, PM_FELPURR_MUMMY, PM_FELPURR_ZOMBIE,
++	MH_FELPURR | ROLE_MALE|ROLE_FEMALE | ROLE_CHAOTIC,
++	MH_FELPURR, MH_HUMAN, MH_ORC,
++	/*  Str    Int Wis Dex Con Cha */
++	{   3,      3,  3,  3,  3,  3 },
++	{STR18(30),15, 20, 20, 16, 18 },
++	/* Init   Lower  Higher */
++	{  1, 0,  0, 1,  1, 0 },	/* Hit points */
++	{  1, 0,  2, 0,  2, 0 }		/* Energy */
++},
++#endif
+ /* Array terminator */
+ { 0, 0, 0, 0 }};
+ 
+diff -aurbN nethack-3.4.3/src/sounds.c nethack-3.4.3-fel/src/sounds.c
+--- nethack-3.4.3/src/sounds.c	2011-11-10 20:17:14.000000000 +0900
++++ nethack-3.4.3-fel/src/sounds.c	2011-11-10 21:01:39.000000000 +0900
+@@ -850,6 +850,10 @@
+ 		    pline_msg = "purrs.";
+ */
+ 		    pline_msg = "ゴロゴロと鳴いた．";
++#ifdef FELPURR
++		else if Race_if(PM_FELPURR)
++		    pline_msg = "重々しく挨拶した．";
++#endif
+ 		else
+ /*JP
+ 		    pline_msg = "mews.";
+diff -aurbN nethack-3.4.3/src/trap.c nethack-3.4.3-fel/src/trap.c
+--- nethack-3.4.3/src/trap.c	2011-11-10 20:17:14.000000000 +0900
++++ nethack-3.4.3-fel/src/trap.c	2011-11-10 20:31:14.000000000 +0900
+@@ -787,6 +787,16 @@
+ #endif
+ 		return;
+ 	    }
++#ifdef FELPURR
++	    if (Race_if(PM_FELPURR) && ttype == SLP_GAS_TRAP) {
++	      pline("あなたはガス雲で眠ってしまった！");
++	      fall_asleep(-rnd(40), TRUE);
++#ifdef STEED
++	      (void) steedintrap(trap, (struct obj *)0);
++#endif
++	      return;
++	    }
++#endif
+ 	    if(!Fumbling && ttype != MAGIC_PORTAL &&
+ 		ttype != ANTI_MAGIC && !forcebungle &&
+ 		(!rn2(5) ||
+diff -aurbN nethack-3.4.3/src/zap.c nethack-3.4.3-fel/src/zap.c
+--- nethack-3.4.3/src/zap.c	2011-11-10 20:17:14.000000000 +0900
++++ nethack-3.4.3-fel/src/zap.c	2011-11-10 20:32:04.000000000 +0900
+@@ -2269,7 +2269,14 @@
+ 			You("don't feel sleepy!");
+ */
+ 			You("眠くならない！");
+-		    } else {
++		    }
++#ifdef FELPURR
++		    else if Race_if(PM_FELPURR) {
++			pline("眠り光線があなたに命中した！");
++			fall_asleep(-rnd(60), TRUE);
++		      }
++#endif
++		    else {
+ /*JP
+ 			pline_The("sleep ray hits you!");
+ */
+@@ -3505,7 +3512,13 @@
+ 		You("don't feel sleepy.");
+ */
+ 		You("眠くならない．");
+-	    } else {
++	    } 
++#ifdef FELPURR
++		    else if Race_if(PM_FELPURR) {
++			fall_asleep(-d(nd,35), TRUE); /* sleep ray */
++		      }
++#endif
++		    else {
+ 		fall_asleep(-d(nd,25), TRUE); /* sleep ray */
+ 	    }
+ 	    break;
