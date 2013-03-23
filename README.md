@@ -53,7 +53,7 @@ all these patches are under the NetHack General Public License. see [LICENSE]
 
 
 ## Fencer -- JNetHackで剣士。
-新しい職業「戦士 Fighter」を追加します。昔のJNetHackにあったFighterがベースになっています。 刀剣類のエキスパートで、二刀流で命中率ボーナスを得られます。
+新しい職業「剣士 Fencer」を追加します。昔のJNetHackにあったFighterがベースになっています。 刀剣類のエキスパートで、二刀流で命中率ボーナスを得られます。
 
 ### 特徴
 * 選択できる属性は中立と混沌。
