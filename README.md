@@ -20,14 +20,14 @@ all these patches are under the NetHack General Public License. see [LICENSE]
   * 覗き見され、周囲のモンスターの反感を買う。
   * 何も起きない。
 * みそぎの後は数ターン麻痺する。神の機嫌は関係ない。
-* シンボル `u' のモンスターが友好的（3色のユニコーンを含む）。
+* シンボル u のモンスターが友好的（3色のユニコーンを含む）。
 * 神様はSamuraiと同じ。
 * ペットは必ず白ユニコーンの仔 white unicorn foal。
 * クエストネメシスは九尾の狐 Nine Tailed Fox。炎ブレスで攻撃してくる。
 * クエストアーティファクトは破魔の短剣 The Holy Dagger（アサメ）。反射、物理ダメージ半減、魔法防御、アンデッドに追加ダメージ。
 * 追加モンスター
-  * 妖狐 fox spirit (`d')。炎のにらみ攻撃。
-  * ユニコーンの仔 unicorn foal (`u')。3色います。各色のユニコーンに成長。角は落とさない。
+  * 妖狐 fox spirit (d)。炎のにらみ攻撃。
+  * ユニコーンの仔 unicorn foal (u)。3色います。各色のユニコーンに成長。角は落とさない。
 
 ### 困ったちゃん
 * バランス調整がまだ。
@@ -81,7 +81,7 @@ all these patches are under the NetHack General Public License. see [LICENSE]
 * ステータス値はDexとWisが高め。
 * lv.1で暗視、忍び、素早さ、lv.4で探索、lv.7で透明視。
 * ペットは猫になる。
-* シンボル`f'がつねに友好的、`d'がつねに敵対的。
+* シンボルfがつねに友好的、dがつねに敵対的。
 * 罠、薬、魔法、杖による睡眠時間が他種族より長い。
 * 眠りの罠は回避できない。
 * ネコミミモード♪
